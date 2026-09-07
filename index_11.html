@@ -2783,6 +2783,16 @@ p:not(.font-mono):not(.text-xs):not(.sr-only) {
   parent.postMessage({type:'exact-section-ready',section:'zaro'},'*');
 })();
 </script>
+<script>
+(function(){
+  var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+  var node;
+  while(node=walker.nextNode()){
+    if(node.nodeValue==='Zaro') node.nodeValue='OpsTracer';
+    else if(node.nodeValue==='Zaro Agents') node.nodeValue='OpsTracer Agents';
+  }
+})();
+</script>
 </template>
 
 <template id="embedded-overmind">
