@@ -5860,7 +5860,8 @@
 
     /* ---------------------------------------------------------------------------
    22 — Canonical typography system
-   Host Grotesk carries editorial copy; DM Mono carries operational metadata.
+   Host Grotesk carries editorial copy; DM Mono carries navigation, actions,
+   and operational metadata.
    This final layer intentionally wins over the captured page's legacy aliases.
    --------------------------------------------------------------------------- */
     @font-face {
@@ -5992,13 +5993,23 @@
       font-size: var(--type-ui);
       line-height: var(--leading-ui);
       font-weight: 500;
-      letter-spacing: 0;
-      text-transform: none
+      letter-spacing: .04em;
+      text-transform: uppercase
     }
 
     .navlinks a,
     .eyebrow,
+    .btn,
+    .ready-button,
+    .ghbtn,
     #replay,
+    .pricing-action {
+      font-family: var(--font-mono) !important;
+      font-variant-ligatures: none;
+      letter-spacing: .04em;
+      text-transform: uppercase
+    }
+
     .chip,
     .rca-badge,
     .rca-tag,
