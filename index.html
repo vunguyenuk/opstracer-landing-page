@@ -177,21 +177,14 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
       flex: 0 0 clamp(190px, 14.7vw, 282px);
-      min-height: 42px;
-      font-family: Chivo, sans-serif;
-      font-weight: 900;
-      font-size: 22px;
-      letter-spacing: -.025em
+      min-height: 42px
     }
 
-    .lamp {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 4px var(--glow)
+    .brand-logo {
+      display: block;
+      width: clamp(120px, 7vw, 142px);
+      height: auto
     }
 
     .navlinks {
@@ -2217,8 +2210,7 @@
 
       .brand {
         flex-basis: 180px;
-        min-height: unset;
-        font-size: 18px
+        min-height: unset
       }
 
       .navlinks a {
@@ -2334,8 +2326,11 @@
       }
 
       .brand {
-        flex: 1;
-        font-size: 17px
+        flex: 1
+      }
+
+      .brand-logo {
+        width: 108px
       }
 
       .navcta {
@@ -5429,8 +5424,8 @@
     }
 
     /* ---------------------------------------------------------------------------
-   19 — Hub tile is type, not a mark
-   The centre tile was cut out of the artwork so the hub can be set live. It is
+   19 — Hub tile carries the supplied vertical brand mark
+   The centre tile was cut out of the artwork so the self-contained logo can render live. It is
    positioned on the same 960x540 grid the connector paths use, so it lands
    exactly where the six lines converge. Sizing is in cqw against the figure so
    the label tracks the illustration at any column width.
@@ -5448,20 +5443,9 @@
       height: 29.63%;
       display: grid;
       place-items: center;
-      background: #171411;
-      color: #f4f1eb;
-      font-family: "Host Grotesk", "IBM Plex Sans", sans-serif;
-      font-size: clamp(7px, 2.3cqw, 19px);
-      font-weight: 500;
-      letter-spacing: -.02em;
-      line-height: 1.1;
-      text-align: center
-    }
-
-    @media (max-width:680px) {
-      .audit-case-mark {
-        font-size: clamp(7px, 3cqw, 16px)
-      }
+      padding: 0;
+      background: transparent;
+      box-sizing: border-box
     }
 
     /* ---------------------------------------------------------------------------
@@ -6499,7 +6483,7 @@
   <a class="skip" href="#main">Skip to content</a>
   <nav>
     <div class="shell navin">
-      <span class="brand"><span class="lamp"></span>OpsTracer</span>
+      <span class="brand"><img class="brand-logo" src="assets/logo-horizontal.svg" alt="OpsTracer"></span>
       <div class="navlinks">
         <a href="#how">How it works</a>
         <a href="#oncall">On-call</a>
@@ -6815,7 +6799,7 @@
           </svg>
           <img src="assets/supported-models-network-transparent.png"
             alt="OpsTracer connected to GitHub, PostHog, Linear, Grafana, Datadog, and Notion">
-          <span class="audit-case-mark">OpsTracer</span>
+          <span class="audit-case-mark"><img src="assets/vertical.svg" alt="OpsTracer"></span>
         </div>
       </div>
     </section>
@@ -13609,10 +13593,8 @@
                           <div class="p-2">
                             <div
                               class="flex h-8 items-center gap-2 rounded-[10px] px-[11px] border border-cloud-100 text-umber-800 dark:border-umber-800 dark:text-cloud-50">
-                              <span role="img" aria-hidden="true"
-                                class="block shrink-0 bg-current text-current size-3.5"
-                                style="mask-image: url(&quot;assets/zaro-mark.svg&quot;); mask-repeat: no-repeat; mask-size: contain; mask-position: center center;"></span><span
-                                class="text-sm font-medium tracking-[-0.005em]">Zaro</span></div>
+                              <img src="assets/logo-horizontal.svg" alt="OpsTracer"
+                                style="display:block;width:96px;height:auto"></div>
                           </div>
                           <div aria-hidden="true" class="px-2">
                             <div class="h-px w-full bg-cloud-100 dark:bg-umber-800"></div>
@@ -13637,10 +13619,9 @@
                                     aria-hidden="true"></span></div>
                                 <div
                                   class="flex h-9 w-full items-center gap-2.5 whitespace-nowrap rounded-md px-2.5 text-left text-sm font-medium text-umber-800/80 dark:text-cloud-200">
-                                  <span role="img" aria-hidden="true"
-                                    class="block bg-current text-current size-3.5 shrink-0"
-                                    style="mask-image: url(&quot;assets/zaro-mark.svg&quot;); mask-repeat: no-repeat; mask-size: contain; mask-position: center center;"></span><span
-                                    class="min-w-0 flex-1">Zaro Agents</span></div>
+                                  <span class="ui-icon icon-ai icon-xs shrink-0 opacity-80"
+                                    aria-hidden="true"></span><span
+                                    class="min-w-0 flex-1">OpsTracer Agents</span></div>
                                 <div
                                   class="flex h-9 w-full items-center gap-2.5 whitespace-nowrap rounded-md px-2.5 text-left text-sm font-medium text-umber-800/80 dark:text-cloud-200">
                                   <span class="ui-icon icon-folder icon-xs shrink-0 opacity-80"
