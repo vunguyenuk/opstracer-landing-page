@@ -4910,29 +4910,28 @@
     }
 
     /* ---------------------------------------------------------------------------
-   5 — One heading size for every section below the hero
-   55/65 was already the majority setting (timeline, integration card, pillars,
-   the SRE Lead intro, the closing CTA). The RCA title was the only fluid
-   outlier, so it joins them. The hero keeps its own larger scale.
+   5 — RCA heading scale
+   The narrow copy rail needs a quieter display step than the wider section
+   headlines, while keeping the same Host Grotesk voice and line breaks.
    --------------------------------------------------------------------------- */
     .ops-proof-title {
-      font-size: 55px;
-      line-height: 65px;
+      font-size: 3.125rem;
+      line-height: 3.75rem;
       letter-spacing: -.025em;
       max-width: 14ch
     }
 
     @media (max-width:1100px) {
       .ops-proof-title {
-        font-size: 46px;
-        line-height: 54px
+        font-size: 2.625rem;
+        line-height: 3.125rem
       }
     }
 
     @media (max-width:680px) {
       .ops-proof-title {
-        font-size: 38px;
-        line-height: 44px;
+        font-size: 2.125rem;
+        line-height: 2.5rem;
         max-width: 16ch
       }
     }
@@ -5609,26 +5608,6 @@
       animation: integration-hub-in .55s .62s cubic-bezier(.16, 1, .3, 1) forwards
     }
 
-    #evidence-confidence.is-visual-live .rca-event-dot {
-      animation: rca-evidence-loop 7.5s cubic-bezier(.65, 0, .35, 1) infinite
-    }
-
-    #evidence-confidence.is-visual-live .rca-event:nth-child(2) .rca-event-dot {
-      animation-delay: 1.2s
-    }
-
-    #evidence-confidence.is-visual-live .rca-event:nth-child(3) .rca-event-dot {
-      animation-delay: 2.4s
-    }
-
-    #evidence-confidence.is-visual-live .rca-event:nth-child(4) .rca-event-dot {
-      animation-delay: 3.6s
-    }
-
-    #evidence-confidence.is-visual-live .rca-event:nth-child(5) .rca-event-dot {
-      animation-delay: 4.8s
-    }
-
     #evidence-confidence.is-visual-live .rca-trend circle.is-ring {
       transform-box: fill-box;
       transform-origin: center;
@@ -5643,30 +5622,267 @@
       animation: rca-recommendation-live 3.2s cubic-bezier(.65, 0, .35, 1) infinite
     }
 
-    /* One travelling pulse per arm rather than a marching-ants dash, so the
-   integration graph reads like the routing lines in the "From alert to
-   prevention" band: a single amber signal running out from the hub. */
+    /* RCA evidence resolution — the panel arrives in the incident state above,
+       then verifies each evidence item once. Red remains a static data colour;
+       motion belongs to the blue investigation cursor and green completion. */
+    #evidence-confidence .rca-event-dot,
+    #evidence-confidence .rca-trend circle.is-ring,
+    #evidence-confidence .rca-fix-card span {
+      animation: none
+    }
+
+    .rca-timeline-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px
+    }
+
+    .rca-evidence-progress {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--sre-muted);
+      font-family: "DM Mono", ui-monospace, Menlo, monospace;
+      font-size: 11px;
+      line-height: 16px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      font-variant-numeric: tabular-nums;
+      transition: color .32s cubic-bezier(.25, 1, .5, 1)
+    }
+
+    .rca-evidence-progress b {
+      color: var(--sre-ink-2);
+      font-weight: 400;
+      transition: color .32s cubic-bezier(.25, 1, .5, 1)
+    }
+
+    .rca-evidence-progress.is-checking,
+    .rca-evidence-progress.is-checking b {
+      color: var(--sre-blue)
+    }
+
+    .rca-evidence-progress.is-complete,
+    .rca-evidence-progress.is-complete b {
+      color: var(--sre-green)
+    }
+
+    .rca-timeline-graph {
+      position: relative
+    }
+
+    .rca-timeline-list::before,
+    .rca-timeline-list::after {
+      display: none
+    }
+
+    .rca-evidence-branch {
+      position: absolute;
+      z-index: 0;
+      left: 0;
+      top: 13px;
+      bottom: 15px;
+      width: 38px;
+      height: calc(100% - 28px);
+      overflow: visible;
+      pointer-events: none
+    }
+
+    .rca-evidence-branch path {
+      fill: none;
+      stroke-width: 1;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke
+    }
+
+    .rca-evidence-branch-track {
+      stroke: var(--sre-line-2)
+    }
+
+    .rca-evidence-branch-progress {
+      stroke: var(--sre-green);
+      opacity: 0;
+      transition: opacity .42s cubic-bezier(.22, 1, .36, 1)
+    }
+
+    .rca-panel.is-evidence-complete .rca-evidence-branch-progress {
+      opacity: 1
+    }
+
+    .rca-timeline-graph .rca-event {
+      grid-template-columns: 38px minmax(0, 1fr) auto
+    }
+
+    .rca-incident {
+      grid-template-columns: minmax(0, 1fr) auto
+    }
+
+    .rca-timeline-graph .rca-event-dot {
+      --rca-dot-x: 0px;
+      transform: translateX(var(--rca-dot-x))
+    }
+
+    .rca-timeline-graph .rca-event:nth-child(3) .rca-event-dot,
+    .rca-timeline-graph .rca-event:nth-child(4) .rca-event-dot {
+      --rca-dot-x: 16px
+    }
+
+    .rca-event,
+    .rca-event h5,
+    .rca-event p,
+    .rca-event-dot,
+    .rca-event-dot .ui-icon,
+    .rca-event .rca-status {
+      transition: color .34s cubic-bezier(.25, 1, .5, 1),
+        background-color .34s cubic-bezier(.25, 1, .5, 1),
+        border-color .34s cubic-bezier(.25, 1, .5, 1),
+        opacity .34s cubic-bezier(.25, 1, .5, 1),
+        transform .34s cubic-bezier(.25, 1, .5, 1)
+    }
+
+    .rca-event.is-checking {
+      transform: none
+    }
+
+    .rca-event.is-checking .rca-event-dot {
+      color: var(--sre-ink-2);
+      border-color: var(--sre-line-2);
+      background: var(--sre-panel)
+    }
+
+    .rca-event:not(.is-resolved) .rca-event-dot {
+      color: var(--sre-ink-2);
+      border-color: var(--sre-line-2);
+      background: var(--sre-panel)
+    }
+
+    .rca-event.is-checking .rca-event-dot::after {
+      display: none
+    }
+
+    .rca-event-number {
+      font-family: "DM Mono", monospace;
+      font-size: 11px;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+      color: currentColor
+    }
+
+    .rca-event.is-resolved .rca-event-dot,
+    .rca-event.is-resolved .rca-event-dot--danger,
+    .rca-event.is-resolved .rca-event-dot--effect,
+    .rca-event.is-resolved .rca-event-dot--end {
+      color: var(--sre-green);
+      border-color: var(--sre-green);
+      background: var(--sre-green-bg)
+    }
+
+    .rca-event.is-resolved .rca-event-dot .ui-icon {
+      opacity: 1;
+      transform: scale(1)
+    }
+
+    .rca-event.is-resolved .rca-status {
+      color: var(--sre-green);
+      border-color: var(--sre-green-line);
+      background: var(--sre-green-bg)
+    }
+
+    .rca-panel .rca-badge,
+    .rca-panel .rca-failure-mark,
+    .rca-panel .rca-finding,
+    .rca-panel .rca-finding>div,
+    .rca-panel .rca-finding h4,
+    .rca-panel .rca-tag,
+    .rca-panel .rca-trend circle,
+    .rca-panel .rca-trend rect,
+    .rca-panel .rca-trend line {
+      transition: color .42s cubic-bezier(.25, 1, .5, 1),
+        background-color .42s cubic-bezier(.25, 1, .5, 1),
+        border-color .42s cubic-bezier(.25, 1, .5, 1),
+        opacity .42s cubic-bezier(.25, 1, .5, 1),
+        transform .42s cubic-bezier(.25, 1, .5, 1),
+        fill .42s cubic-bezier(.25, 1, .5, 1),
+        stroke .42s cubic-bezier(.25, 1, .5, 1)
+    }
+
+    .rca-panel .rca-finding.is-updating>div {
+      opacity: 0;
+      transform: translateY(5px)
+    }
+
+    .rca-panel.is-evidence-complete .rca-badge {
+      color: var(--sre-green);
+      border-color: var(--sre-green-line);
+      background: var(--sre-green-bg)
+    }
+
+    .rca-panel.is-evidence-complete .rca-failure-mark {
+      color: var(--sre-green);
+      border-color: var(--sre-green);
+      background: var(--sre-green-bg)
+    }
+
+    .rca-panel.is-evidence-complete .rca-finding {
+      border-color: var(--sre-green-line);
+      background: linear-gradient(90deg, rgba(55, 201, 147, .10), transparent 62%), var(--sre-panel-2)
+    }
+
+    .rca-panel.is-evidence-complete .rca-finding h4,
+    .rca-panel.is-evidence-complete .rca-tag {
+      color: var(--sre-green)
+    }
+
+    .rca-panel.is-evidence-complete .rca-tag {
+      border-color: var(--sre-green-line);
+      background: var(--sre-green-bg)
+    }
+
+    .rca-panel.is-evidence-complete .rca-trend line {
+      stroke: var(--sre-green-line)
+    }
+
+    .rca-panel.is-evidence-complete .rca-trend circle,
+    .rca-panel.is-evidence-complete .rca-trend circle.is-ok,
+    .rca-panel.is-evidence-complete .rca-trend circle.is-error,
+    .rca-panel.is-evidence-complete .rca-trend circle.is-ring,
+    .rca-panel.is-evidence-complete .rca-trend rect {
+      fill: var(--sre-green);
+      stroke: none
+    }
+
+    @keyframes rca-evidence-scan {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    /* A steady inbound packet on every route makes the graph read as live
+   synchronization into OpsTracer, not as a one-shot connection reveal. */
     .audit-case-links .audit-case-links-flow {
       stroke: var(--sre-amber);
-      stroke-width: 1.6;
+      stroke-width: 1.8;
       stroke-linecap: round;
-      stroke-dasharray: 22 156;
-      stroke-dashoffset: 178;
+      stroke-dasharray: 18 142;
+      stroke-dashoffset: 160;
       opacity: 0;
-      filter: drop-shadow(0 0 5px rgba(240, 164, 58, .55))
     }
 
     #integration-graph.is-visual-live .audit-case-links .audit-case-links-flow {
-      opacity: .9;
-      animation: integration-route-flow 4.2s cubic-bezier(.22, 1, .36, 1) infinite
+      opacity: 1;
+      animation: integration-route-flow 2.4s linear infinite
     }
 
-    #integration-graph.is-visual-live .audit-case-links .audit-case-links-flow--b {
-      animation-delay: .14s
+    #integration-graph.is-visual-live .audit-case-links .audit-case-links-flow:nth-of-type(3),
+    #integration-graph.is-visual-live .audit-case-links .audit-case-links-flow:nth-of-type(6) {
+      animation-delay: -.8s
     }
 
-    #integration-graph.is-visual-live .audit-case-links .audit-case-links-flow--c {
-      animation-delay: .28s
+    #integration-graph.is-visual-live .audit-case-links .audit-case-links-flow:nth-of-type(4),
+    #integration-graph.is-visual-live .audit-case-links .audit-case-links-flow:nth-of-type(7) {
+      animation-delay: -1.6s
     }
 
     .audit-case-mark::after {
@@ -5737,13 +5953,13 @@
       68%,
       100% {
         opacity: .58;
-        transform: scale(.9)
+        transform: translateX(var(--rca-dot-x, 0px)) scale(.9)
       }
 
       8%,
       20% {
         opacity: 1;
-        transform: scale(1.08)
+        transform: translateX(var(--rca-dot-x, 0px)) scale(1.08)
       }
     }
 
@@ -5777,7 +5993,7 @@
 
     @keyframes integration-route-flow {
       from {
-        stroke-dashoffset: 178
+        stroke-dashoffset: 160
       }
 
       to {
@@ -5839,6 +6055,25 @@
       #evidence-confidence .rca-trend circle.is-ring,
       #evidence-confidence .rca-fix-card span {
         animation: none
+      }
+
+      .rca-event,
+      .rca-event h5,
+      .rca-event p,
+      .rca-event-dot,
+      .rca-event-dot .ui-icon,
+      .rca-event .rca-status,
+      .rca-evidence-branch-progress,
+      .rca-panel .rca-badge,
+      .rca-panel .rca-failure-mark,
+      .rca-panel .rca-finding,
+      .rca-panel .rca-finding>div,
+      .rca-panel .rca-finding h4,
+      .rca-panel .rca-tag,
+      .rca-panel .rca-trend circle,
+      .rca-panel .rca-trend rect,
+      .rca-panel .rca-trend line {
+        transition: none
       }
     }
 
@@ -6646,7 +6881,6 @@
           </header>
 
           <div class="rca-incident">
-            <span class="rca-failure-mark" aria-hidden="true"><span class="ui-icon icon-close"></span></span>
             <div>
               <h3>Checkout API error spike after deploy</h3>
               <p class="rca-path">payments-api · deploy #8f21c</p>
@@ -6705,8 +6939,18 @@
           </section>
 
           <section class="rca-timeline" aria-labelledby="rca-timeline-title">
-            <h4 id="rca-timeline-title">Evidence timeline</h4>
-            <ol class="rca-timeline-list">
+            <div class="rca-timeline-head">
+              <h4 id="rca-timeline-title">Evidence timeline</h4>
+              <span class="rca-evidence-progress" aria-live="polite"><b>1 / 5</b> done</span>
+            </div>
+            <div class="rca-timeline-graph">
+              <svg class="rca-evidence-branch" viewBox="0 0 38 100" preserveAspectRatio="none" aria-hidden="true">
+                <path class="rca-evidence-branch-track" pathLength="1"
+                  d="M11 0 V25 C11 30 27 30 27 36 V74 C27 81 11 81 11 87 V100" />
+                <path class="rca-evidence-branch-progress" pathLength="1"
+                  d="M11 0 V25 C11 30 27 30 27 36 V74 C27 81 11 81 11 87 V100" />
+              </svg>
+              <ol class="rca-timeline-list">
               <li class="rca-event">
                 <span class="rca-event-dot" aria-hidden="true"><span class="ui-icon icon-check"></span></span>
                 <div>
@@ -6716,7 +6960,7 @@
                 <a class="rca-event-link" href="#audit-trail">View</a>
               </li>
               <li class="rca-event">
-                <span class="rca-event-dot rca-event-dot--danger" aria-hidden="true"><span class="ui-icon icon-close"></span></span>
+                <span class="rca-event-dot rca-event-dot--danger" aria-hidden="true"><span class="rca-event-number">2</span></span>
                 <div>
                   <h5>Client error begins <span class="rca-status rca-status--cause">Root cause</span></h5>
                   <p>products.map() receives an undefined payload.</p>
@@ -6724,7 +6968,7 @@
                 <a class="rca-event-link" href="#audit-trail">View</a>
               </li>
               <li class="rca-event">
-                <span class="rca-event-dot rca-event-dot--effect" aria-hidden="true"><span class="ui-icon icon-alert"></span></span>
+                <span class="rca-event-dot rca-event-dot--effect" aria-hidden="true"><span class="rca-event-number">3</span></span>
                 <div>
                   <h5>Checkout completion drops <span class="rca-status rca-status--effect">Effect</span></h5>
                   <p>Web conversion falls 18% in affected regions.</p>
@@ -6732,7 +6976,7 @@
                 <a class="rca-event-link" href="#audit-trail">View</a>
               </li>
               <li class="rca-event">
-                <span class="rca-event-dot rca-event-dot--effect" aria-hidden="true"><span class="ui-icon icon-alert"></span></span>
+                <span class="rca-event-dot rca-event-dot--effect" aria-hidden="true"><span class="rca-event-number">4</span></span>
                 <div>
                   <h5>Support contacts rise <span class="rca-status rca-status--effect">Effect</span></h5>
                   <p>Customer reports join the same incident graph.</p>
@@ -6740,14 +6984,15 @@
                 <a class="rca-event-link" href="#audit-trail">View</a>
               </li>
               <li class="rca-event">
-                <span class="rca-event-dot rca-event-dot--end" aria-hidden="true"><span class="ui-icon icon-check"></span></span>
+                <span class="rca-event-dot rca-event-dot--end" aria-hidden="true"><span class="rca-event-number">5</span></span>
                 <div>
                   <h5>Incident contained</h5>
                   <p>Rollback restores the previous payload contract.</p>
                 </div>
                 <a class="rca-event-link" href="#audit-trail">View</a>
               </li>
-            </ol>
+              </ol>
+            </div>
           </section>
 
           <section class="rca-fix" aria-labelledby="rca-fix-title">
@@ -6793,9 +7038,12 @@
           <svg class="audit-case-links" viewBox="0 0 960 540" preserveAspectRatio="xMidYMid meet" aria-hidden="true"
             focusable="false">
             <path d="M240 272 H402 M561 272 H723 M481 192 V112 H399 M481 112 H564 M481 351 V431 H399 M481 431 H564" />
-            <path class="audit-case-links-flow audit-case-links-flow--a" d="M240 272 H402 M561 272 H723" />
-            <path class="audit-case-links-flow audit-case-links-flow--b" d="M481 192 V112 H399 M481 112 H564" />
-            <path class="audit-case-links-flow audit-case-links-flow--c" d="M481 351 V431 H399 M481 431 H564" />
+            <path class="audit-case-links-flow" d="M240 272 H402" />
+            <path class="audit-case-links-flow" d="M723 272 H561" />
+            <path class="audit-case-links-flow" d="M399 112 H481 V192" />
+            <path class="audit-case-links-flow" d="M564 112 H481 V192" />
+            <path class="audit-case-links-flow" d="M399 431 H481 V351" />
+            <path class="audit-case-links-flow" d="M564 431 H481 V351" />
           </svg>
           <img src="assets/supported-models-network-transparent.png"
             alt="OpsTracer connected to GitHub, PostHog, Linear, Grafana, Datadog, and Notion">
@@ -20531,6 +20779,168 @@
           });
         }, { threshold: [0, .18, .35] });
         observer.observe(section);
+      })();
+
+      /* Resolve the RCA evidence once, in reading order. The initial state stays
+         faithful to the incident view; only the active investigation cursor
+         moves, and every verified item settles into a durable green state. */
+      (function () {
+        var section = document.getElementById('evidence-confidence');
+        if (!section) return;
+        var panel = section.querySelector('.rca-panel');
+        var timelineGraph = section.querySelector('.rca-timeline-graph');
+        var timeline = section.querySelector('.rca-timeline-list');
+        var events = Array.prototype.slice.call(section.querySelectorAll('.rca-event'));
+        var progress = section.querySelector('.rca-evidence-progress');
+        var badge = section.querySelector('.rca-badge');
+        if (!panel || !timelineGraph || !timeline || !events.length || !progress || !badge) return;
+
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var played = false;
+
+        function setEventMark(event, index, complete) {
+          var dot = event.querySelector('.rca-event-dot');
+          if (!dot) return;
+          var mark = document.createElement('span');
+          if (complete) {
+            mark.className = 'ui-icon icon-check';
+          } else {
+            mark.className = 'rca-event-number';
+            mark.textContent = String(index + 1);
+          }
+          dot.replaceChildren(mark);
+        }
+
+        function setProgress(done, checking) {
+          progress.classList.toggle('is-checking', checking);
+          progress.classList.toggle('is-complete', done === events.length);
+          progress.innerHTML = checking
+            ? '<b>' + (done + 1) + ' / ' + events.length + '</b> checking'
+            : '<b>' + done + ' / ' + events.length + '</b> done';
+        }
+
+        function applyCompletedFinding() {
+          var finding = panel.querySelector('.rca-finding');
+          var tags = finding && finding.querySelectorAll('.rca-tag');
+          var title = finding && finding.querySelector('#rca-finding-title');
+          var summary = finding && finding.querySelector('.rca-analysis summary');
+          var analysis = finding && finding.querySelectorAll('.rca-analysis li');
+          var trendHeads = finding && finding.querySelectorAll('.rca-trend-head');
+          var trendCharts = finding && finding.querySelectorAll('.rca-trend');
+          if (!finding || !tags || tags.length < 2 || !title || !summary || !analysis || analysis.length < 3 ||
+            !trendHeads || trendHeads.length < 2 || !trendCharts || trendCharts.length < 2) return;
+
+          function commit() {
+            tags[0].textContent = 'Resolved';
+            tags[1].textContent = 'Payload contract verified';
+            title.textContent = 'Checkout payload contract restored';
+            summary.textContent = 'Resolution verified';
+            analysis[0].textContent = 'Rollback completed 6 minutes after detection.';
+            analysis[1].textContent = 'Checkout completion returned to baseline.';
+            analysis[2].textContent = 'Payload-contract test now blocks this regression.';
+
+            trendHeads[0].querySelector('span').textContent = 'Verification trend';
+            trendHeads[0].querySelector('b').textContent = '6 / 6';
+            trendCharts[0].setAttribute('aria-label', 'All six verification checks passed after rollback');
+            Array.prototype.forEach.call(trendCharts[0].querySelectorAll('circle'), function (circle) {
+              circle.classList.remove('is-error', 'is-ring');
+              circle.classList.add('is-ok');
+              circle.setAttribute('r', '3');
+            });
+
+            trendHeads[1].querySelector('span').textContent = 'Error rate';
+            trendHeads[1].querySelector('b').textContent = '0.3%';
+            trendCharts[1].setAttribute('aria-label', 'Error rate returned to baseline after rollback');
+            var recoveryHeights = [21, 17, 13, 9, 6, 4, 3, 2];
+            Array.prototype.forEach.call(trendCharts[1].querySelectorAll('rect'), function (bar, index) {
+              var height = recoveryHeights[index];
+              bar.setAttribute('y', String(34 - height));
+              bar.setAttribute('height', String(height));
+            });
+
+            panel.classList.add('is-evidence-complete');
+            if (reduce) {
+              finding.classList.remove('is-updating');
+            } else {
+              window.requestAnimationFrame(function () {
+                window.requestAnimationFrame(function () { finding.classList.remove('is-updating'); });
+              });
+            }
+          }
+
+          if (reduce) {
+            commit();
+          } else {
+            finding.classList.add('is-updating');
+            window.setTimeout(commit, 180);
+          }
+        }
+
+        function completePanel() {
+          badge.textContent = 'Complete';
+          setProgress(events.length, false);
+          applyCompletedFinding();
+        }
+
+        function resolveAt(index) {
+          if (index >= events.length) {
+            window.setTimeout(completePanel, 260);
+            return;
+          }
+          var event = events[index];
+          event.classList.add('is-checking');
+          setProgress(index, true);
+          window.setTimeout(function () {
+            event.classList.remove('is-checking');
+            event.classList.add('is-resolved');
+            setEventMark(event, index, true);
+            setProgress(index + 1, false);
+            window.setTimeout(function () { resolveAt(index + 1); }, 360);
+          }, 720);
+        }
+
+        function prepareInitialState() {
+          events.forEach(function (event, index) {
+            event.classList.remove('is-checking', 'is-resolved');
+            if (index === 0) {
+              event.classList.add('is-resolved');
+              setEventMark(event, index, true);
+            } else {
+              setEventMark(event, index, false);
+            }
+          });
+          setProgress(1, false);
+        }
+
+        function play() {
+          if (played) return;
+          played = true;
+          prepareInitialState();
+          if (reduce) {
+            events.forEach(function (event, index) {
+              event.classList.add('is-resolved');
+              setEventMark(event, index, true);
+            });
+            completePanel();
+            return;
+          }
+          window.setTimeout(function () { resolveAt(1); }, 900);
+        }
+
+        prepareInitialState();
+        if (!('IntersectionObserver' in window)) { play(); return; }
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting && entry.intersectionRatio >= .3) {
+              play();
+              observer.disconnect();
+            }
+          });
+        }, { threshold: [0, .15, .3, .5], rootMargin: '0px 0px -6% 0px' });
+        /* Autoplay only once the product panel itself is readable. Observing the
+           full section started the sequence while the copy column was visible,
+           so users could arrive after the investigation had already completed. */
+        observer.observe(panel);
       })();
 
       /* Reveal each native visual once it can be read. The three sections called
