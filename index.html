@@ -359,8 +359,6 @@
       height: clamp(760px, 53.65vw, 1030px);
       margin: 0 auto;
       padding: 0;
-      border-left: 1px solid var(--line);
-      border-right: 1px solid var(--line);
       overflow: hidden
     }
 
@@ -448,45 +446,6 @@
 
     .hero .fine {
       display: none
-    }
-
-    .hero-progress {
-      position: absolute;
-      z-index: 5;
-      top: 36px;
-      right: 50px;
-      display: flex;
-      align-items: center;
-      color: var(--ink)
-    }
-
-    .hero-progress .node {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: currentColor;
-      flex: none
-    }
-
-    .hero-progress .track {
-      width: 22px;
-      height: 2px;
-      background: currentColor
-    }
-
-    .hero-progress .diamond {
-      width: 14px;
-      height: 14px;
-      border-radius: 0;
-      transform: rotate(45deg)
-    }
-
-    .hero-progress .capsule {
-      width: 51px;
-      height: 18px;
-      border: 2px solid currentColor;
-      border-radius: 999px;
-      flex: none
     }
 
     /* ---------- hero globe ---------- */
@@ -2250,11 +2209,6 @@
         bottom: -220px
       }
 
-      .hero-progress {
-        top: 28px;
-        right: 32px
-      }
-
       .gtip {
         transform: translate(-50%, -112%)
       }
@@ -2380,10 +2334,6 @@
         min-width: 250px;
         padding: 15px 44px 15px 28px;
         font-size: 16px
-      }
-
-      .hero-progress {
-        display: none
       }
 
       .globewrap {
@@ -5208,15 +5158,6 @@
     }
 
     /* ---------------------------------------------------------------------------
-   13 — Hero progress marker recedes
-   It was inheriting --ink, so it sat at full paper brightness and competed
-   with the headline. Dropped to the line step.
-   --------------------------------------------------------------------------- */
-    .hero-progress {
-      color: #4b433d
-    }
-
-    /* ---------------------------------------------------------------------------
    14 — The shell rule takes the colour of the band it crosses
    One rule gives every section the same 94% shell border, but it painted the
    light-paper token (#d4d2ca) on the dark bands too, so the vertical rules and
@@ -6744,11 +6685,6 @@
           <div class="acts">
             <a class="btn" href="#get-started">Get a live demo</a>
           </div>
-        </div>
-
-        <div class="hero-progress" aria-hidden="true">
-          <span class="node"></span><span class="track"></span><span class="node"></span><span class="track"></span>
-          <span class="node diamond"></span><span class="track"></span><span class="capsule"></span>
         </div>
 
         <div class="globewrap">
@@ -16804,6 +16740,121 @@
           animation: none
         }
       }
+
+      /* Evidence-led SRE timeline: every row names its originating system and
+         carries the exact operational fact used later in the incident review. */
+      .timeline-source {
+        display: inline-flex;
+        width: fit-content;
+        min-width: 72rem;
+        align-items: center;
+        gap: 7rem;
+        color: #c7c1bb;
+        font-family: "DM Mono", monospace !important;
+        font-size: 10rem;
+        line-height: 14rem;
+        text-transform: uppercase
+      }
+
+      .timeline-source::before {
+        content: "";
+        width: 7rem;
+        height: 7rem;
+        flex: none;
+        background: #918981
+      }
+
+      .timeline-source--deploy::before {
+        background: #b78eff
+      }
+
+      .timeline-source--logs::before {
+        background: #57b1ff
+      }
+
+      .timeline-source--trace::before {
+        background: #6790ff
+      }
+
+      .timeline-source--pager::before {
+        background: #f0a43a
+      }
+
+      .timeline-source--verify::before {
+        background: #37c993
+      }
+
+      .timeline-event-copy {
+        min-width: 0
+      }
+
+      .timeline-event-copy strong {
+        display: block;
+        overflow: hidden;
+        color: #ded9d3;
+        font-size: 13rem;
+        line-height: 18rem;
+        font-weight: 400;
+        text-overflow: ellipsis;
+        white-space: nowrap
+      }
+
+      .timeline-event-copy small {
+        display: block;
+        overflow: hidden;
+        margin-top: 3rem;
+        color: #a29a92;
+        font-family: "DM Mono", monospace !important;
+        font-size: 11rem;
+        line-height: 15rem;
+        text-overflow: ellipsis;
+        white-space: nowrap
+      }
+
+      .timeline-table--provenance .table-head,
+      .timeline-table--provenance .table-row {
+        grid-template-columns: 70rem 92rem minmax(220rem, 1fr) 84rem
+      }
+
+      .timeline-table--provenance .table-row {
+        min-height: 61rem
+      }
+
+      .timeline-table--provenance .status-chip {
+        justify-self: end
+      }
+
+      @media(max-width:900px) {
+        .timeline-table--provenance .table-head,
+        .timeline-table--provenance .table-row {
+          grid-template-columns: 48px 78px minmax(128px, 1fr)
+        }
+
+        .timeline-table--provenance .table-head span:last-child,
+        .timeline-table--provenance .table-row>.status-chip {
+          display: none
+        }
+
+        .timeline-source {
+          min-width: 0;
+          font-size: 9px;
+          line-height: 13px
+        }
+
+        .timeline-event-copy strong {
+          font-size: 12px;
+          line-height: 16px
+        }
+
+        .timeline-table--provenance .table-row>.timeline-event-copy {
+          display: block
+        }
+
+        .timeline-event-copy small {
+          font-size: 11px;
+          line-height: 15px
+        }
+      }
     </style>
     <main class="leadership-section" data-cs-block="section-4">
       <div class="leadership-shell">
@@ -16826,38 +16877,31 @@
 
             <div class="ops-window timeline-window" aria-label="Incident timeline preview">
               <div class="window-bar">
-                <div class="window-title"><span class="pulse-dot"></span>INC-2841 · CHECKOUT LATENCY</div>
-                <div class="window-actions"><span>Search</span><span>Export</span><span
-                    class="status-chip status-chip--live">Live</span></div>
+                <div class="window-title"><span class="pulse-dot"></span>INC-2841 · CHECKOUT-API</div>
+                <div class="window-actions"><span>Trace</span><span>Export JSON</span><span
+                    class="status-chip status-chip--green">Resolved</span></div>
               </div>
               <div class="filter-row">
-                <span class="filter-chip filter-chip--active">All evidence</span><span
-                  class="filter-chip">Deploys</span><span class="filter-chip">Logs</span><span
-                  class="filter-chip">Ownership</span>
+                <span class="filter-chip filter-chip--active">Timeline</span><span
+                  class="filter-chip">Evidence · 4</span><span class="filter-chip">Decisions · 2</span><span
+                  class="filter-chip">Owners · 3</span>
               </div>
               <div class="timeline-summary">
                 <div><span>STARTED</span><strong>08:42 ICT</strong></div>
+                <div><span>DURATION</span><strong>11M 07S</strong></div>
                 <div><span>SEVERITY</span><strong class="text-red">SEV-1</strong></div>
                 <div><span>OWNER</span><strong>LINH PHAM</strong></div>
-                <div><span>STATUS</span><strong class="text-green">RESOLVED</strong></div>
               </div>
-              <div class="timeline-table">
-                <div class="table-head"><span>Time</span><span>Signal</span><span>Evidence</span><span>State</span>
+              <div class="timeline-table timeline-table--provenance">
+                <div class="table-head"><span>Time</span><span>Source</span><span>Event / evidence</span><span>State</span>
                 </div>
-                <div class="table-row"><span>08:42</span><span><i class="event-icon event-icon--red"><span class="ui-icon icon-alert" aria-hidden="true"></span></i>Alert
-                    opened</span><span>p95 latency 4.8s</span><span
-                    class="status-chip status-chip--red">Triggered</span></div>
-                <div class="table-row"><span>08:44</span><span><i class="event-icon event-icon--blue"><span class="ui-icon icon-deploy" aria-hidden="true"></span></i>Deploy
-                    found</span><span>checkout-api@1842</span><span
-                    class="status-chip status-chip--amber">Changed</span></div>
-                <div class="table-row"><span>08:46</span><span><i class="event-icon event-icon--amber"><span class="ui-icon icon-bell" aria-hidden="true"></span></i>Owner
-                    paged</span><span>Linh Pham · Platform</span><span
-                    class="status-chip status-chip--green">Acked</span></div>
-                <div class="table-row"><span>08:53</span><span><i class="event-icon event-icon--green"><span class="ui-icon icon-check" aria-hidden="true"></span></i>Rollback
-                    verified</span><span>error rate 0.3%</span><span
-                    class="status-chip status-chip--green">Resolved</span></div>
+                <div class="table-row"><span>08:41:29</span><span class="timeline-source timeline-source--deploy">GitHub</span><span class="timeline-event-copy"><strong>Deploy 8f21c completed</strong><small>checkout-api · main → production</small></span><span class="status-chip status-chip--amber">Changed</span></div>
+                <div class="table-row"><span>08:42:11</span><span class="timeline-source timeline-source--logs">Datadog</span><span class="timeline-event-copy"><strong>p95 latency crossed 4.8s</strong><small>monitor checkout.latency.p95</small></span><span class="status-chip status-chip--red">Alert</span></div>
+                <div class="table-row"><span>08:42:19</span><span class="timeline-source timeline-source--trace">OTel</span><span class="timeline-event-copy"><strong>POST /checkout failed</strong><small>trace 6c92e · products.js:156</small></span><span class="status-chip status-chip--red">Traced</span></div>
+                <div class="table-row"><span>08:44:03</span><span class="timeline-source timeline-source--pager">Pager</span><span class="timeline-event-copy"><strong>Linh acknowledged</strong><small>APAC primary · SMS reply</small></span><span class="status-chip status-chip--green">Acked</span></div>
+                <div class="table-row"><span>08:53:18</span><span class="timeline-source timeline-source--verify">Verify</span><span class="timeline-event-copy"><strong>Rollback restored baseline</strong><small>error rate 12.4% → 0.3%</small></span><span class="status-chip status-chip--green">Resolved</span></div>
               </div>
-              <div class="window-footer"><span>4 correlated events</span><span>Timeline captured automatically</span>
+              <div class="window-footer"><span>5 events · 4 source systems</span><span>All timestamps preserved in ICT</span>
               </div>
             </div>
           </article>
@@ -18594,7 +18638,15 @@
         --card-blue: #6790ff;
         --card-green: #37c993;
         --card-amber: #f0a43a;
-        --card-red: #ef6257
+        --card-red: #ef6257;
+        --product-caption: 11px;
+        --product-caption-leading: 15px;
+        --product-body: 13px;
+        --product-body-leading: 18px;
+        --product-subhead: 15px;
+        --product-subhead-leading: 21px;
+        --product-title: 18px;
+        --product-title-leading: 23px
       }
 
       html,
@@ -19589,6 +19641,1254 @@
           line-height: 28px
         }
       }
+
+      /* Product-proof studies: replace decorative metrics and hub diagrams with
+         routing records, decisions, cited claims and time-bounded correlations. */
+      .proof-label,
+      .route-row small,
+      .route-owner small,
+      .route-step time,
+      .coord-stream time,
+      .handoff-summary small,
+      .handoff-evidence time,
+      .rca-doc-row small,
+      .claim-card small,
+      .claim-evidence small,
+      .correlation-query small,
+      .correlation-event time,
+      .correlation-event em,
+      .proof-foot {
+        font-family: "DM Mono", monospace !important;
+        font-variant-numeric: tabular-nums;
+        font-variant-ligatures: none;
+        text-transform: uppercase
+      }
+
+      .route-match,
+      .coord-stream,
+      .handoff-summary,
+      .handoff-evidence,
+      .rca-document,
+      .claim-card,
+      .claim-evidence,
+      .correlation-query,
+      .correlation-events {
+        border: 1px solid var(--card-line);
+        background: #171411
+      }
+
+      .route-match {
+        margin-top: 12px
+      }
+
+      .route-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 8px;
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--card-line)
+      }
+
+      .route-row small,
+      .route-owner small,
+      .handoff-summary small,
+      .rca-doc-row small,
+      .claim-card small,
+      .claim-evidence small,
+      .correlation-query small {
+        display: block;
+        color: #918981;
+        font-size: 9px;
+        line-height: 13px
+      }
+
+      .route-row strong {
+        display: block;
+        margin-top: 3px;
+        color: #f4f1eb;
+        font-size: 13px;
+        line-height: 17px;
+        font-weight: 500
+      }
+
+      .route-row>span:last-child {
+        align-self: center;
+        color: var(--card-green);
+        font-family: "DM Mono", monospace !important;
+        font-size: 10px
+      }
+
+      .route-owner {
+        display: grid;
+        grid-template-columns: 27px minmax(0, 1fr) auto;
+        gap: 9px;
+        align-items: center;
+        padding: 10px 12px
+      }
+
+      .route-owner b {
+        display: block;
+        color: #e3dcd5;
+        font-size: 12px;
+        line-height: 16px;
+        font-weight: 500
+      }
+
+      .route-owner em {
+        color: var(--card-green);
+        font-family: "DM Mono", monospace !important;
+        font-size: 9px;
+        line-height: 13px;
+        font-style: normal
+      }
+
+      .route-steps {
+        margin-top: 10px;
+        border: 1px solid var(--card-line)
+      }
+
+      .route-step {
+        display: grid;
+        grid-template-columns: 8px minmax(0, 1fr) auto;
+        gap: 9px;
+        align-items: center;
+        min-height: 35px;
+        padding: 0 12px;
+        color: #c6bdb6;
+        font-size: 11px;
+        border-bottom: 1px solid var(--card-line)
+      }
+
+      .route-step:last-child {
+        border-bottom: 0
+      }
+
+      .route-step i {
+        width: 7px;
+        height: 7px;
+        background: var(--card-green)
+      }
+
+      .route-step--skipped i {
+        background: #5a514a
+      }
+
+      .route-step time,
+      .coord-stream time,
+      .handoff-evidence time,
+      .correlation-event time {
+        color: #918981;
+        font-size: 9px;
+        line-height: 13px
+      }
+
+      .coord-stream {
+        margin-top: 10px
+      }
+
+      .coord-stream div {
+        display: grid;
+        grid-template-columns: 42px minmax(0, 1fr);
+        gap: 8px;
+        min-height: 38px;
+        align-items: center;
+        padding: 0 10px;
+        color: #c6bdb6;
+        font-size: 11px;
+        line-height: 15px;
+        border-bottom: 1px solid var(--card-line)
+      }
+
+      .coord-stream div:last-child {
+        border-bottom: 0
+      }
+
+      .coord-stream strong {
+        color: #f4f1eb;
+        font-weight: 500
+      }
+
+      .handoff-summary {
+        margin-top: 10px;
+        padding: 10px 12px
+      }
+
+      .handoff-summary strong {
+        display: block;
+        margin-top: 4px;
+        color: #f4f1eb;
+        font-size: 12px;
+        line-height: 17px;
+        font-weight: 500
+      }
+
+      .handoff-summary code {
+        color: #b78eff;
+        font-size: 10px
+      }
+
+      .handoff-evidence {
+        margin-top: 10px
+      }
+
+      .handoff-evidence div {
+        display: grid;
+        grid-template-columns: 8px minmax(0, 1fr) auto;
+        gap: 9px;
+        align-items: center;
+        min-height: 34px;
+        padding: 0 10px;
+        color: #c6bdb6;
+        font-size: 10px;
+        border-bottom: 1px solid var(--card-line)
+      }
+
+      .handoff-evidence div:last-child {
+        border-bottom: 0
+      }
+
+      .handoff-evidence i {
+        width: 7px;
+        height: 7px;
+        border: 1px solid #5a514a
+      }
+
+      .handoff-evidence div:first-child i {
+        border-color: var(--card-green);
+        background: var(--card-green)
+      }
+
+      .rca-document {
+        margin-top: 12px
+      }
+
+      .rca-doc-head {
+        padding: 11px 12px;
+        border-bottom: 1px solid var(--card-line)
+      }
+
+      .rca-doc-head small {
+        display: block;
+        color: #918981;
+        font: 9px/13px "DM Mono", monospace
+      }
+
+      .rca-doc-head strong {
+        display: block;
+        margin-top: 4px;
+        color: #f4f1eb;
+        font-size: 14px;
+        line-height: 18px;
+        font-weight: 500
+      }
+
+      .rca-doc-row {
+        display: grid;
+        grid-template-columns: 74px minmax(0, 1fr);
+        gap: 10px;
+        min-height: 42px;
+        align-items: center;
+        padding: 7px 12px;
+        border-bottom: 1px solid var(--card-line)
+      }
+
+      .rca-doc-row:last-child {
+        border-bottom: 0
+      }
+
+      .rca-doc-row span {
+        color: #d5cec6;
+        font-size: 11px;
+        line-height: 15px
+      }
+
+      .proof-foot {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        margin-top: 10px;
+        color: #918981;
+        font-size: 9px;
+        line-height: 13px
+      }
+
+      .proof-foot strong {
+        color: var(--card-green);
+        font-weight: 500
+      }
+
+      .claim-card {
+        margin-top: 12px;
+        padding: 11px 12px
+      }
+
+      .claim-card strong {
+        display: block;
+        margin-top: 4px;
+        color: #f4f1eb;
+        font-size: 13px;
+        line-height: 18px;
+        font-weight: 500
+      }
+
+      .claim-card span {
+        display: inline-flex;
+        margin-top: 8px;
+        padding: 3px 6px;
+        color: #e9b86f;
+        background: #251e14;
+        font: 9px/13px "DM Mono", monospace
+      }
+
+      .claim-evidence {
+        margin-top: 10px
+      }
+
+      .claim-evidence div {
+        display: grid;
+        grid-template-columns: 60px minmax(0, 1fr) auto;
+        gap: 8px;
+        align-items: center;
+        min-height: 38px;
+        padding: 0 10px;
+        border-bottom: 1px solid var(--card-line)
+      }
+
+      .claim-evidence div:last-child {
+        border-bottom: 0
+      }
+
+      .claim-evidence strong {
+        overflow: hidden;
+        color: #d5cec6;
+        font-size: 10px;
+        line-height: 14px;
+        font-weight: 400;
+        text-overflow: ellipsis;
+        white-space: nowrap
+      }
+
+      .claim-evidence b {
+        color: var(--card-green);
+        font: 9px/13px "DM Mono", monospace;
+        font-weight: 400
+      }
+
+      .correlation-query {
+        margin-top: 12px;
+        padding: 10px 12px
+      }
+
+      .correlation-query code {
+        display: block;
+        margin-top: 4px;
+        overflow: hidden;
+        color: #f4f1eb;
+        font-size: 10px;
+        line-height: 14px;
+        text-overflow: ellipsis;
+        white-space: nowrap
+      }
+
+      .correlation-events {
+        margin-top: 10px
+      }
+
+      .correlation-event {
+        display: grid;
+        grid-template-columns: 52px 58px minmax(0, 1fr);
+        gap: 7px;
+        align-items: center;
+        min-height: 37px;
+        padding: 0 9px;
+        border-bottom: 1px solid var(--card-line)
+      }
+
+      .correlation-event:last-child {
+        border-bottom: 0
+      }
+
+      .correlation-event em {
+        color: #b78eff;
+        font-size: 8px;
+        line-height: 12px;
+        font-style: normal
+      }
+
+      .correlation-event:nth-child(2) em,
+      .correlation-event:nth-child(3) em {
+        color: #57b1ff
+      }
+
+      .correlation-event:nth-child(4) em {
+        color: #f0a43a
+      }
+
+      .correlation-event span {
+        overflow: hidden;
+        color: #c6bdb6;
+        font-size: 10px;
+        line-height: 14px;
+        text-overflow: ellipsis;
+        white-space: nowrap
+      }
+
+      @container (max-width:340px) {
+        .correlation-event {
+          grid-template-columns: 48px 52px minmax(0, 1fr)
+        }
+
+        .claim-evidence div {
+          grid-template-columns: 54px minmax(0, 1fr)
+        }
+
+        .claim-evidence b {
+          display: none
+        }
+      }
+
+      /* Six operational artifacts, six different information geometries. */
+      .visual-routing,
+      .visual-command,
+      .visual-handoff,
+      .visual-rca,
+      .visual-provenance,
+      .visual-swimlane {
+        padding: 26px var(--pillar-card-inset) 48px;
+        background: var(--card-surface)
+      }
+
+      /* Let each operational study end where its own content ends. */
+      .pillar-card {
+        height: auto;
+        min-height: 0
+      }
+
+      .card-visual {
+        flex: none
+      }
+
+      .visual-routing::before,
+      .visual-routing::after,
+      .visual-command::before,
+      .visual-command::after,
+      .visual-handoff::before,
+      .visual-handoff::after,
+      .visual-rca::before,
+      .visual-rca::after,
+      .visual-provenance::before,
+      .visual-provenance::after,
+      .visual-swimlane::before,
+      .visual-swimlane::after {
+        display: none
+      }
+
+      .artifact-kicker,
+      .artifact-kicker span,
+      .route-facts dt,
+      .route-policy-head,
+      .routing-level,
+      .routing-state,
+      .route-footer,
+      .command-status,
+      .command-roster small,
+      .decision-track time,
+      .handoff-sheet header,
+      .handoff-column h5,
+      .handoff-sheet footer,
+      .rca-sheet header,
+      .rca-sheet dt,
+      .rca-sheet footer,
+      .provenance-node small,
+      .provenance-verdict,
+      .investigation-head,
+      .trace-source,
+      .trace-axis,
+      .trace-row>span,
+      .change-check,
+      .investigation-verdict {
+        font-family: "DM Mono", monospace !important;
+        font-variant-numeric: tabular-nums;
+        font-variant-ligatures: none;
+        text-transform: uppercase
+      }
+
+      .artifact-kicker {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        color: #a79e96;
+        font-size: var(--product-caption);
+        line-height: var(--product-caption-leading)
+      }
+
+      .artifact-kicker strong {
+        color: #f4f1eb;
+        font-family: "Host Grotesk", sans-serif !important;
+        font-size: var(--product-title);
+        line-height: var(--product-title-leading);
+        font-weight: 500;
+        text-transform: none
+      }
+
+      .artifact-kicker span {
+        color: var(--card-red)
+      }
+
+      .provenance-map svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        overflow: visible
+      }
+
+      /* 01 — service metadata resolves into a live escalation path */
+      .route-panel {
+        margin-top: 18px;
+        border-top: 1px solid #5a514a
+      }
+
+      .route-facts {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin: 0;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--card-line)
+      }
+
+      .route-facts div {
+        min-width: 0
+      }
+
+      .route-facts div+div {
+        padding-left: 16px;
+        border-left: 1px solid var(--card-line)
+      }
+
+      .route-facts dt {
+        color: #918981;
+        font-size: var(--product-caption);
+        line-height: var(--product-caption-leading)
+      }
+
+      .route-facts dd {
+        margin: 6px 0 0
+      }
+
+      .route-facts strong,
+      .route-facts span {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap
+      }
+
+      .route-facts strong {
+        color: #f4f1eb;
+        font-size: var(--product-body);
+        line-height: var(--product-body-leading);
+        font-weight: 500
+      }
+
+      .route-facts span {
+        margin-top: 2px;
+        color: #a79e96;
+        font-size: var(--product-caption);
+        line-height: var(--product-caption-leading)
+      }
+
+      .route-policy {
+        padding-top: 14px
+      }
+
+      .route-policy-head,
+      .route-footer {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        color: #918981;
+        font-size: var(--product-caption);
+        line-height: var(--product-caption-leading)
+      }
+
+      .route-policy-head strong {
+        color: var(--card-amber);
+        font-weight: 500
+      }
+
+      .routing-policy-steps {
+        margin: 8px 0 0;
+        padding: 0;
+        list-style: none
+      }
+
+      .routing-policy-step {
+        display: grid;
+        grid-template-columns: 26px minmax(0, 1fr) auto;
+        gap: 10px;
+        align-items: center;
+        min-height: 54px;
+        border-bottom: 1px solid var(--card-line)
+      }
+
+      .routing-level {
+        display: grid;
+        width: 24px;
+        height: 24px;
+        place-items: center;
+        border: 1px solid #5a514a;
+        color: #a79e96;
+        font-size: var(--product-caption);
+        line-height: 1
+      }
+
+      .routing-policy-step--ack .routing-level {
+        border-color: var(--card-green);
+        color: var(--card-green)
+      }
+
+      .routing-target {
+        min-width: 0
+      }
+
+      .routing-target b,
+      .routing-target small {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap
+      }
+
+      .routing-target b {
+        color: #f4f1eb;
+        font-size: var(--product-body);
+        line-height: var(--product-body-leading);
+        font-weight: 500
+      }
+
+      .routing-target small {
+        margin-top: 2px;
+        color: #a79e96;
+        font-size: var(--product-caption);
+        line-height: var(--product-caption-leading)
+      }
+
+      .routing-state {
+        color: var(--card-green);
+        font-size: var(--product-caption);
+        line-height: var(--product-caption-leading);
+        white-space: nowrap
+      }
+
+      .routing-policy-step--cancelled .routing-target b,
+      .routing-policy-step--cancelled .routing-state {
+        color: #918981
+      }
+
+      .route-footer {
+        margin-top: 13px
+      }
+
+      .route-footer strong {
+        color: var(--card-green);
+        font-weight: 500
+      }
+
+      /* 02 — live command log */
+      .command-status {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid #5a514a;
+        color: #a79e96;
+        font-size: var(--product-caption);
+        line-height: var(--product-caption-leading)
+      }
+
+      .command-status strong {
+        color: var(--card-green);
+        font-weight: 500
+      }
+
+      .command-incident {
+        margin: 18px 0 0;
+        color: #f4f1eb;
+        font-size: var(--product-title);
+        line-height: var(--product-title-leading);
+        font-weight: 500
+      }
+
+      .command-roster {
+        display: flex;
+        gap: 30px;
+        margin-top: 12px
+      }
+
+      .command-roster small {
+        display: block;
+        color: #918981;
+        font-size: var(--product-caption);
+        line-height: var(--product-caption-leading)
+      }
+
+      .command-roster b {
+        color: #d9d2ca;
+        font-size: var(--product-body);
+        line-height: var(--product-body-leading);
+        font-weight: 400
+      }
+
+      .decision-track {
+        position: relative;
+        margin: 25px 0 0;
+        padding: 0 0 0 32px;
+        list-style: none
+      }
+
+      .decision-track::before {
+        content: "";
+        position: absolute;
+        left: 6px;
+        top: 7px;
+        bottom: 8px;
+        width: 1px;
+        background: #5a514a
+      }
+
+      .decision-track li {
+        position: relative;
+        display: grid;
+        grid-template-columns: 48px minmax(0, 1fr);
+        gap: 10px;
+        padding-bottom: 21px;
+        color: #cfc7bf;
+        font-size: var(--product-body);
+        line-height: var(--product-body-leading)
+      }
+
+      .decision-track li::before {
+        content: "";
+        position: absolute;
+        left: -30px;
+        top: 5px;
+        width: 9px;
+        height: 9px;
+        border: 1px solid #81766e;
+        background: var(--card-surface)
+      }
+
+      .decision-track li:last-child::before {
+        border-color: var(--card-green);
+        background: var(--card-green)
+      }
+
+      .decision-track time {
+        color: #918981;
+        font-size: var(--product-caption);
+        line-height: var(--product-caption-leading)
+      }
+
+      .decision-track strong {
+        color: #f4f1eb;
+        font-weight: 500
+      }
+
+      /* 03 — shift handoff brief */
+      .handoff-sheet {
+        position: relative;
+        min-height: 318px;
+        padding: 18px 18px 14px;
+        background: #1e1a17;
+        clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 0 100%)
+      }
+
+      .handoff-sheet::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 30px;
+        height: 30px;
+        background: #3a332d;
+        clip-path: polygon(0 0, 100% 100%, 0 100%)
+      }
+
+      .handoff-sheet header {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        padding-right: 22px;
+        padding-bottom: 12px;
+        border-bottom: 1px dashed #5a514a;
+        color: #aaa098;
+        font-size: var(--product-caption);
+        line-height: var(--product-caption-leading)
+      }
+
+      .handoff-sheet header strong {
+        color: var(--card-green);
+        font-weight: 500
+      }
+
+      .handoff-lede {
+        margin: 19px 0 0;
+        max-width: 29ch;
+        color: #f4f1eb;
+        font-size: var(--product-subhead);
+        line-height: var(--product-subhead-leading)
+      }
+
+      .handoff-lede code {
+        color: #b78eff;
+        font-size: var(--product-body)
+      }
+
+      .handoff-columns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin-top: 23px
+      }
+
+      .handoff-column h5 {
+        margin: 0 0 10px;
+        color: #918981;
+        font-size: var(--product-caption);
+        line-height: var(--product-caption-leading);
+        font-weight: 400
+      }
+
+      .handoff-column p {
+        position: relative;
+        margin: 0 0 9px;
+        padding-left: 17px;
+        color: #d5cec6;
+        font-size: var(--product-body);
+        line-height: var(--product-body-leading)
+      }
+
+      .handoff-column p::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 4px;
+        width: 7px;
+        height: 7px;
+        border: 1px solid #6a6058
+      }
+
+      .handoff-column--done p::before {
+        border-color: var(--card-green);
+        background: var(--card-green)
+      }
+
+      .handoff-sheet footer {
+        position: absolute;
+        right: 18px;
+        bottom: 14px;
+        color: #918981;
+        font-size: var(--product-caption);
+        line-height: var(--product-caption-leading)
+      }
+
+      /* 06 — a tangible post-incident report */
+      .rca-sheet {
+        position: relative;
+        min-height: 322px;
+        padding: 19px 20px 16px;
+        background: #211d19;
+        color: #f4f1eb;
+        clip-path: polygon(0 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%)
+      }
+
+      .rca-sheet header {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        color: #a79e96;
+        font-size: var(--product-caption);
+        line-height: var(--product-caption-leading)
+      }
+
+      .rca-sheet header strong {
+        color: var(--card-green);
+        font-weight: 500
+      }
+
+      .rca-sheet h5 {
+        margin: 22px 0 17px;
+        max-width: 24ch;
+        font-size: var(--product-title);
+        line-height: var(--product-title-leading);
+        font-weight: 500;
+        letter-spacing: -.01em
+      }
+
+      .rca-sheet dl {
+        display: grid;
+        grid-template-columns: 70px minmax(0, 1fr);
+        gap: 11px 12px;
+        margin: 0;
+        padding-top: 14px;
+        border-top: 1px solid #5a514a
+      }
+
+      .rca-sheet dt {
+        color: #918981;
+        font-size: var(--product-caption);
+        line-height: var(--product-caption-leading)
+      }
+
+      .rca-sheet dd {
+        margin: 0;
+        color: #d5cec6;
+        font-size: var(--product-body);
+        line-height: var(--product-body-leading)
+      }
+
+      .rca-sheet footer {
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        bottom: 16px;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        padding-top: 10px;
+        border-top: 1px solid #5a514a;
+        color: #918981;
+        font-size: var(--product-caption);
+        line-height: var(--product-caption-leading)
+      }
+
+      .rca-sheet footer strong {
+        color: var(--card-green);
+        font-weight: 500
+      }
+
+      /* 05 — evidence provenance map */
+      .provenance-map {
+        position: relative;
+        height: 274px;
+        margin-top: 8px
+      }
+
+      .provenance-map path {
+        fill: none;
+        stroke: #5a514a;
+        stroke-width: 1;
+        vector-effect: non-scaling-stroke
+      }
+
+      .provenance-node {
+        position: absolute;
+        width: 132px;
+        padding-left: 15px
+      }
+
+      .provenance-node::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 4px;
+        width: 7px;
+        height: 7px;
+        background: #b78eff
+      }
+
+      .provenance-node small {
+        display: block;
+        color: #918981;
+        font-size: var(--product-caption);
+        line-height: var(--product-caption-leading)
+      }
+
+      .provenance-node b {
+        display: block;
+        margin-top: 3px;
+        color: #ded7d0;
+        font-size: var(--product-body);
+        line-height: var(--product-body-leading);
+        font-weight: 400
+      }
+
+      .provenance-node--deploy {
+        left: 0;
+        top: 20px
+      }
+
+      .provenance-node--trace {
+        right: 0;
+        top: 20px
+      }
+
+      .provenance-node--trace::before {
+        background: #57b1ff
+      }
+
+      .provenance-node--code {
+        left: 50%;
+        top: 108px;
+        transform: translateX(-50%)
+      }
+
+      .provenance-node--claim {
+        left: 50%;
+        bottom: 2px;
+        width: 230px;
+        padding: 14px 18px;
+        transform: translateX(-50%);
+        background: #251e14;
+        text-align: center
+      }
+
+      .provenance-node--claim::before {
+        left: 50%;
+        top: -5px;
+        width: 9px;
+        height: 9px;
+        transform: translateX(-50%) rotate(45deg);
+        background: var(--card-amber)
+      }
+
+      .provenance-node--claim small {
+        color: #c49a5d
+      }
+
+      .provenance-node--claim b {
+        color: #f4f1eb;
+        font-size: var(--product-body);
+        line-height: var(--product-body-leading);
+        font-weight: 500
+      }
+
+      .provenance-verdict {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        padding-top: 11px;
+        border-top: 1px solid var(--card-line);
+        color: #918981;
+        font-size: var(--product-caption);
+        line-height: var(--product-caption-leading)
+      }
+
+      .provenance-verdict strong {
+        color: var(--card-green);
+        font-weight: 500
+      }
+
+      /* 04 — cross-system investigation trace */
+      .investigation-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 10px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid #5a514a;
+        color: #a79e96;
+        font-size: var(--product-caption);
+        line-height: var(--product-caption-leading)
+      }
+
+      .investigation-head strong {
+        color: var(--card-green);
+        font-weight: 500
+      }
+
+      .trace-sources {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 16px
+      }
+
+      .trace-source {
+        position: relative;
+        min-width: 0;
+        padding-left: 12px;
+        color: #918981;
+        font-size: var(--product-caption);
+        line-height: var(--product-caption-leading)
+      }
+
+      .trace-source::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 3px;
+        width: 6px;
+        height: 6px;
+        background: var(--source)
+      }
+
+      .trace-source b {
+        display: block;
+        overflow: hidden;
+        color: #d8d0c8;
+        font-family: "Host Grotesk", sans-serif !important;
+        font-size: var(--product-body);
+        line-height: var(--product-body-leading);
+        font-weight: 500;
+        text-overflow: ellipsis;
+        text-transform: none;
+        white-space: nowrap
+      }
+
+      .trace-waterfall {
+        margin-top: 22px
+      }
+
+      .trace-axis {
+        display: grid;
+        grid-template-columns: 72px minmax(0, 1fr) 52px;
+        padding-bottom: 7px;
+        color: #918981;
+        font-size: var(--product-caption);
+        line-height: var(--product-caption-leading)
+      }
+
+      .trace-axis-scale {
+        grid-column: 2;
+        display: flex;
+        justify-content: space-between
+      }
+
+      .trace-row {
+        display: grid;
+        grid-template-columns: 72px minmax(0, 1fr) 52px;
+        align-items: center;
+        min-height: 34px
+      }
+
+      .trace-row>span {
+        color: #aaa098;
+        font-size: var(--product-caption);
+        line-height: var(--product-caption-leading);
+        text-transform: none
+      }
+
+      .trace-track {
+        position: relative;
+        height: 22px;
+        background-image: linear-gradient(to right, #2c2723 0, #2c2723 1px, transparent 1px);
+        background-size: 33.333% 100%
+      }
+
+      .trace-track i {
+        position: absolute;
+        left: var(--start);
+        right: calc(100% - var(--end));
+        top: 50%;
+        height: 8px;
+        transform: translateY(-50%);
+        background: var(--tone)
+      }
+
+      .trace-duration {
+        justify-self: end;
+        color: #a79e96;
+        font-family: "DM Mono", monospace !important;
+        font-size: var(--product-caption);
+        line-height: var(--product-caption-leading);
+        font-weight: 400;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap
+      }
+
+      .trace-row--suspect .trace-duration {
+        color: var(--card-amber)
+      }
+
+      .change-check {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 10px;
+        margin-top: 13px;
+        padding: 10px 0;
+        border-top: 1px solid #39322d;
+        border-bottom: 1px solid #39322d;
+        color: #918981;
+        font-size: var(--product-caption);
+        line-height: var(--product-caption-leading)
+      }
+
+      .change-check b {
+        color: #d8d0c8;
+        font-family: "Host Grotesk", sans-serif !important;
+        font-size: var(--product-body);
+        line-height: var(--product-body-leading);
+        font-weight: 500;
+        text-transform: none
+      }
+
+      .change-check em {
+        color: #918981;
+        font-style: normal
+      }
+
+      .investigation-verdict {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        margin-top: 13px;
+        color: #918981;
+        font-size: var(--product-caption);
+        line-height: var(--product-caption-leading)
+      }
+
+      .investigation-verdict strong {
+        color: var(--card-green);
+        font-weight: 500
+      }
+
+      @container (max-width:340px) {
+        .visual-routing,
+        .visual-command,
+        .visual-handoff,
+        .visual-rca,
+        .visual-provenance,
+        .visual-swimlane {
+          padding-inline: 20px
+        }
+
+        .routing-policy-step {
+          grid-template-columns: 26px minmax(0, 1fr)
+        }
+
+        .routing-state {
+          grid-column: 2;
+          justify-self: start;
+          margin-top: -7px;
+          padding-bottom: 9px
+        }
+
+        .command-roster {
+          gap: 18px
+        }
+
+        .handoff-columns {
+          gap: 12px
+        }
+
+        .provenance-node--claim {
+          width: 190px
+        }
+
+        .trace-sources {
+          gap: 8px
+        }
+
+        .trace-axis,
+        .trace-row {
+          grid-template-columns: 62px minmax(0, 1fr) 48px
+        }
+      }
     </style>
     <main class="pillars" data-cs-block="section-5">
       <span class="edge-block edge-block--top" aria-hidden="true">
@@ -19613,15 +20913,21 @@
                     rotation.</p>
                 </div>
               </div>
-              <div class="card-visual visual-service" aria-hidden="true">
-                <div class="product-bar"><span><i></i><i></i><i></i> ON-CALL ESCALATION</span><b>SEV-1</b></div>
-                <div class="alert-summary"><span>checkout-api</span><strong>High latency · 4.8s
-                    p95</strong><small>Production · 08:42 ICT</small></div>
-                <div class="responder-list">
-                  <div><i class="avatar avatar--blue">LP</i><span><b>Linh Pham</b><small>Primary · Checkout
-                        owner</small></span><em>ACKED</em></div>
-                  <div><i class="avatar avatar--slate">MT</i><span><b>Minh Tran</b><small>Escalation 2 ·
-                        Platform</small></span><em>READY</em></div>
+              <div class="card-visual visual-routing" aria-hidden="true">
+                <div class="artifact-kicker"><strong>High latency · 4.8s p95</strong><span>SEV-1 · 08:42</span></div>
+                <div class="route-panel">
+                  <dl class="route-facts">
+                    <div><dt>Matched signal</dt><dd><strong>checkout-api</strong><span>production · p95 4.8s</span></dd></div>
+                    <div><dt>Catalog match</dt><dd><strong>Commerce</strong><span>service.owner · 98%</span></dd></div>
+                  </dl>
+                  <section class="route-policy">
+                    <div class="route-policy-head"><span>Escalation path</span><strong>ACTIVE</strong></div>
+                    <ol class="routing-policy-steps">
+                      <li class="routing-policy-step routing-policy-step--ack"><span class="routing-level">L1</span><span class="routing-target"><b>Commerce primary</b><small>Linh Pham · APAC until 17:00 UTC</small></span><span class="routing-state">ACK 01:52</span></li>
+                      <li class="routing-policy-step routing-policy-step--cancelled"><span class="routing-level">L2</span><span class="routing-target"><b>Commerce backup</b><small>Escalate after 5 minutes</small></span><span class="routing-state">CANCELLED</span></li>
+                    </ol>
+                    <div class="route-footer"><span>SMS + PUSH DELIVERED</span><strong>FALLBACK STOPPED</strong></div>
+                  </section>
                 </div>
               </div>
             </article>
@@ -19633,18 +20939,15 @@
                   <p>Keeps roles, updates, decisions, and ownership visible while responders work.</p>
                 </div>
               </div>
-              <div class="card-visual visual-coordination" aria-hidden="true">
-                <div class="product-bar"><span><i></i><i></i><i></i> INCIDENT COMMAND</span><b class="is-live">LIVE</b>
-                </div>
-                <div class="incident-title"><strong>INC-2841 · Checkout latency</strong><span>Investigating · 3
-                    responders</span></div>
-                <div class="command-grid">
-                  <div><small>COMMANDER</small><b>Minh Tran</b></div>
-                  <div><small>COMMS</small><b>Sara Nguyen</b></div>
-                  <div><small>STATUS</small><b class="text-lime">Investigating</b></div>
-                  <div><small>NEXT UPDATE</small><b>09:10 ICT</b></div>
-                </div>
-                <div class="decision-line"><i></i><span>Rollback approved</span><time>08:53</time></div>
+              <div class="card-visual visual-command" aria-hidden="true">
+                <div class="command-status"><span>INC-2841 · 3 RESPONDERS</span><strong>INVESTIGATING</strong></div>
+                <h5 class="command-incident">Checkout latency</h5>
+                <div class="command-roster"><span><small>Commander</small><b>Minh Tran</b></span><span><small>Comms</small><b>Sara Nguyen</b></span></div>
+                <ol class="decision-track">
+                  <li><time>08:45</time><span><strong>Role assigned</strong><br>Minh takes command</span></li>
+                  <li><time>08:49</time><span><strong>Decision</strong><br>Freeze checkout deploys</span></li>
+                  <li><time>08:53</time><span><strong>Approved</strong><br>Roll back 8f21c</span></li>
+                </ol>
               </div>
             </article>
 
@@ -19655,16 +20958,16 @@
                   <p>Gives every responder the current timeline, suspected cause, and open evidence.</p>
                 </div>
               </div>
-              <div class="card-visual visual-timeline" aria-hidden="true">
-                <div class="product-bar"><span><i></i><i></i><i></i> HANDOFF BRIEF</span><b class="is-live">LIVE</b>
-                </div>
-                <div class="handoff-owner"><i class="avatar avatar--blue">LP</i><span><small>HANDING OFF
-                      TO</small><b>Payments primary</b></span><em>4 SOURCES</em></div>
-                <ol>
-                  <li><i></i><span>Latency alert opened</span><time>08:42</time></li>
-                  <li><i></i><span>Deploy correlated</span><time>08:44</time></li>
-                  <li><i></i><span>Rollback verified</span><time>08:53</time></li>
-                </ol>
+              <div class="card-visual visual-handoff" aria-hidden="true">
+                <article class="handoff-sheet">
+                  <header><span>SHIFT HANDOFF · APAC → EU</span><strong>4 SOURCES</strong></header>
+                  <p class="handoff-lede">Deploy <code>8f21c</code> removed the product payload guard. Rollback restored baseline.</p>
+                  <div class="handoff-columns">
+                    <section class="handoff-column handoff-column--done"><h5>Proven</h5><p>Error rate recovered</p><p>Deploy window matched</p></section>
+                    <section class="handoff-column"><h5>Open</h5><p>Cache replay safety</p><p>Owner: Payments</p></section>
+                  </div>
+                  <footer>Prepared 08:56 ICT · Linh Pham</footer>
+                </article>
               </div>
             </article>
           </div>
@@ -19682,15 +20985,13 @@
                   <p>Turns the investigation into a clear narrative, timeline, impact summary, and prevention plan.</p>
                 </div>
               </div>
-              <div class="card-visual visual-report" aria-hidden="true">
-                <div class="product-bar"><span><i></i><i></i><i></i> POST-INCIDENT REVIEW</span><b>READY</b></div>
-                <div class="report-title"><small>ROOT CAUSE ANALYSIS</small><b>Checkout latency · Sep 06</b></div>
-                <div class="report-fields">
-                  <div><small>IMPACT</small><b>11 minutes</b></div>
-                  <div><small>ROOT CAUSE</small><b>Pool regression</b></div>
-                  <div><small>PREVENTION</small><b class="text-lime">Assigned</b></div>
-                </div>
-                <i>Evidence complete · ready for review</i>
+              <div class="card-visual visual-rca" aria-hidden="true">
+                <article class="rca-sheet">
+                  <header><span>RCA · INC-2841 · REV 03</span><strong>APPROVED</strong></header>
+                  <h5>Checkout latency after deploy 8f21c</h5>
+                  <dl><dt>Impact</dt><dd>18% checkout drop · 11m 07s</dd><dt>Cause</dt><dd>Undefined product payload after guard removal</dd><dt>Prevent</dt><dd>Contract test · owner Linh Pham</dd></dl>
+                  <footer><span>2 REVIEWERS · 0 OPEN CLAIMS</span><strong>EVIDENCE COMPLETE</strong></footer>
+                </article>
               </div>
             </article>
 
@@ -19701,20 +21002,15 @@
                   <p>Attach every root-cause claim to the exact events behind it.</p>
                 </div>
               </div>
-              <div class="card-visual visual-security" aria-hidden="true">
-                <div class="product-bar"><span><i></i><i></i><i></i> EVIDENCE COVERAGE</span><b>22 OPEN</b></div>
-                <div class="security-cards">
-                  <div><small>LOGS</small><strong>96<span>%</span></strong>
-                    <p>events linked</p><i><b style="width:96%"></b></i>
-                  </div>
-                  <div><small>DEPLOYS</small><strong>84<span>%</span></strong>
-                    <p>changes traced</p><i><b style="width:84%"></b></i>
-                  </div>
-                  <div><small>CODE</small><strong>91<span>%</span></strong>
-                    <p>commits linked</p><i><b style="width:91%"></b></i>
-                  </div>
+              <div class="card-visual visual-provenance" aria-hidden="true">
+                <div class="provenance-map">
+                  <svg viewBox="0 0 330 274" preserveAspectRatio="none"><path d="M45 48L165 130L285 48"/><path d="M165 130V215"/></svg>
+                  <div class="provenance-node provenance-node--deploy"><small>GitHub</small><b>Deploy 8f21c</b></div>
+                  <div class="provenance-node provenance-node--trace"><small>OTel</small><b>Trace 6c92e</b></div>
+                  <div class="provenance-node provenance-node--code"><small>Code</small><b>products.js:156</b></div>
+                  <div class="provenance-node provenance-node--claim"><small>Supported claim</small><b>Guard removal caused the undefined payload.</b></div>
                 </div>
-                <div class="evidence-caption"><span>checkout-api</span><b>4 sources linked</b></div>
+                <div class="provenance-verdict"><span>3 independent links</span><strong>92% supported</strong></div>
               </div>
             </article>
 
@@ -19725,13 +21021,22 @@
                   <p>Connects symptom windows to deploys, commits, feature flags, infra changes, and dependencies.</p>
                 </div>
               </div>
-              <div class="card-visual visual-correlation" aria-hidden="true">
-                <div class="product-bar"><span><i></i><i></i><i></i> CORRELATION MAP</span><b>4 SOURCES</b></div>
-                <span class="hub">RCA</span><span class="sat sat-a">GITHUB</span><span
-                  class="sat sat-b">DATADOG</span><span class="sat sat-c">AWS</span><span class="sat sat-d">FLAGS</span>
-                <svg viewBox="0 0 360 190" preserveAspectRatio="none">
-                  <path d="M180 89L42 27M180 89L318 27M180 89L50 160M180 89L318 160" />
-                </svg>
+              <div class="card-visual visual-swimlane" aria-hidden="true">
+                <div class="investigation-head"><span>TRACE 6C92E · POST /CHECKOUT</span><strong>CAUSE ISOLATED</strong></div>
+                <div class="trace-sources">
+                  <span class="trace-source" style="--source:#918981">Datadog<b>p95 4.8s</b></span>
+                  <span class="trace-source" style="--source:#a79e96">OTel<b>6c92e</b></span>
+                  <span class="trace-source" style="--source:#f0a43a">GitHub<b>8f21c · T−42s</b></span>
+                </div>
+                <div class="trace-waterfall">
+                  <div class="trace-axis"><div class="trace-axis-scale"><span>0</span><span>1.6s</span><span>3.2s</span><span>4.8s</span></div></div>
+                  <div class="trace-row"><span>request</span><div class="trace-track"><i style="--start:0%;--end:100%;--tone:#756d66"></i></div><b class="trace-duration">4.80s</b></div>
+                  <div class="trace-row"><span>checkout-api</span><div class="trace-track"><i style="--start:2%;--end:98%;--tone:#918981"></i></div><b class="trace-duration">4.72s</b></div>
+                  <div class="trace-row trace-row--suspect"><span>products.load</span><div class="trace-track"><i style="--start:7%;--end:92%;--tone:#f0a43a"></i></div><b class="trace-duration">4.31s</b></div>
+                  <div class="trace-row"><span>catalog-db</span><div class="trace-track"><i style="--start:9%;--end:14%;--tone:#37c993"></i></div><b class="trace-duration">180ms</b></div>
+                </div>
+                <div class="change-check"><span>AWS · INFRA DELTA</span><b>none</b><em>ruled out</em></div>
+                <div class="investigation-verdict"><span>DEPLOY PRECEDES FAILURE BY 42S</span><strong>3 SOURCES AGREE</strong></div>
               </div>
             </article>
           </div>
@@ -19742,38 +21047,14 @@
       (function () {
         var root = document.documentElement, section = document.querySelector('.pillars');
         function height() { parent.postMessage({ type: 'exact-section-height', section: 'pillars', height: Math.ceil(section.getBoundingClientRect().height) }, '*') }
-        function updateCorrelationLines() {
-          var visual = document.querySelector('.visual-correlation');
-          if (!visual) return;
-          var svg = visual.querySelector('svg'), path = svg && svg.querySelector('path'), hub = visual.querySelector('.hub');
-          var satellites = Array.prototype.slice.call(visual.querySelectorAll('.sat'));
-          if (!svg || !path || !hub || satellites.length !== 4) return;
-          var svgRect = svg.getBoundingClientRect(), viewBox = svg.viewBox.baseVal;
-          if (!svgRect.width || !svgRect.height || !viewBox.width || !viewBox.height) return;
-          function center(node) {
-            var rect = node.getBoundingClientRect();
-            return [
-              ((rect.left + rect.width / 2 - svgRect.left) / svgRect.width * viewBox.width + viewBox.x).toFixed(2),
-              ((rect.top + rect.height / 2 - svgRect.top) / svgRect.height * viewBox.height + viewBox.y).toFixed(2)
-            ];
-          }
-          var origin = center(hub);
-          path.setAttribute('d', satellites.map(function (node) {
-            var target = center(node);
-            return 'M' + origin[0] + ' ' + origin[1] + 'L' + target[0] + ' ' + target[1];
-          }).join(' '));
-        }
         function play() { root.classList.remove('is-playing'); void root.offsetWidth; requestAnimationFrame(function () { root.classList.add('is-playing') }) }
         function pause() { root.classList.remove('is-playing') }
         addEventListener('message', function (e) { if (e.data && e.data.type === 'play-section-animation') play(); if (e.data && e.data.type === 'pause-section-animation') pause() });
         addEventListener('load', function () {
-          height(); updateCorrelationLines();
-          setTimeout(function () { height(); updateCorrelationLines() }, 300);
-          setTimeout(updateCorrelationLines, 1200);
+          height();
+          setTimeout(height, 300);
         });
-        addEventListener('resize', function () { height(); updateCorrelationLines() });
-        if ('ResizeObserver' in window) { new ResizeObserver(updateCorrelationLines).observe(document.querySelector('.visual-correlation')) }
-        updateCorrelationLines();
+        addEventListener('resize', height);
         parent.postMessage({ type: 'exact-section-ready', section: 'pillars' }, '*');
         if (parent === window) setTimeout(play, 80);
       })();
