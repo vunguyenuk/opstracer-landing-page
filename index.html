@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
 <link rel="preload" href="assets/fonts/HostGrotesk-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/DMMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
-<script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.__pv){document.querySelectorAll('.pv').forEach(function(e){e.classList.add('done')});document.querySelectorAll('.traced,.integr,.pcard').forEach(function(e){e.classList.remove('pre')})}},4000)</script>
+<script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.__pv){document.querySelectorAll('.pv').forEach(function(e){e.classList.add('done')});document.querySelectorAll('.traced,.integr,.pcard').forEach(function(e){e.classList.remove('pre')});document.querySelectorAll('.pl-v').forEach(function(e){e.classList.add('play')})}},4000)</script>
 <style>
 /* ==========================================================================
    OpsTracer landing — built from Figma "Design" / Desktop - 2 (node 152:5562)
@@ -190,7 +190,7 @@ html.js .pv:not(.done):not(.s-chat) :is(.pv-time,.pv-grid,.pv-shimmer){opacity:0
 html.js .pv:not(.done):not(.s-app) .pv-body{opacity:0;transform:translateY(14px)}
 .pv-px{position:absolute;z-index:3;inset:0;pointer-events:none;background-color:rgba(255,255,254,.42);background-image:linear-gradient(90deg,rgba(255,255,254,.68) 50%,transparent 50%),linear-gradient(rgba(255,255,254,.68) 50%,transparent 50%);background-size:20px 20px;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
 html:not(.js) .pv-px,.pv.done .pv-px,.pv.s-built .pv-px{display:none}
-.pv.s-reveal .pv-px{background-size:2px 2px;opacity:0;-webkit-backdrop-filter:blur(0);backdrop-filter:blur(0);transition:background-size 2.1s cubic-bezier(.22,1,.36,1),opacity 2.1s cubic-bezier(.22,1,.36,1),backdrop-filter 2.1s ease}
+.pv.s-reveal .pv-px{background-size:2px 2px;opacity:0;-webkit-backdrop-filter:blur(0);backdrop-filter:blur(0);transition:background-size 1.2s cubic-bezier(.22,1,.36,1),opacity 1.2s cubic-bezier(.22,1,.36,1),backdrop-filter 1.2s ease}
 .pv-body::after{content:"";position:absolute;z-index:4;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 25%,rgba(255,255,254,.58) 46%,transparent 67%);transform:translateX(-120%);display:none}
 .pv.s-app:not(.s-built):not(.done) .pv-body::after{display:block;animation:pvsweep 3s ease-in-out infinite}
 @keyframes pvsweep{0%,18%{transform:translateX(-120%)}68%,100%{transform:translateX(120%)}}
@@ -204,18 +204,39 @@ html:not(.js) .pv-px,.pv.done .pv-px,.pv.s-built .pv-px{display:none}
 .pv.cm .pv-tlbox{height:608px!important}
 .pv-feed{transition:opacity .3s ease}
 .pv.cm .pv-feed{opacity:0}
-.pv-cm{position:absolute;left:3.87px;top:-1.2px;width:267px;display:flex;flex-direction:column;align-items:flex-start;pointer-events:none;visibility:hidden}
+.pv-cm{position:absolute;inset:0;pointer-events:none;visibility:hidden}
 .pv.cm .pv-cm{visibility:visible}
-.cmc{position:relative;flex:none;margin-bottom:-14.09px;opacity:0;transform:translateY(-18px) scale(.96);filter:blur(2px);transition:opacity .3s ease,transform .45s cubic-bezier(.22,1,.36,1),filter .3s ease}
-.cmc:last-child{margin-bottom:0}
-.cmc>span{position:absolute;inset:0;overflow:hidden}
-.cmc img{position:absolute;max-width:none}
-.cmc>i{position:absolute;left:18.05px;background:#fdfdfd}
-.pv.cm .cmc{opacity:1;transform:none;filter:none}
-.pv.cm .cmc:nth-child(2){transition-delay:.08s}.pv.cm .cmc:nth-child(3){transition-delay:.16s}.pv.cm .cmc:nth-child(4){transition-delay:.24s}
-.pv.cm .cmc:nth-child(5){transition-delay:.32s}.pv.cm .cmc:nth-child(6){transition-delay:.4s}.pv.cm .cmc:nth-child(7){transition-delay:.48s}.pv.cm .cmc:nth-child(8){transition-delay:.56s}
-.pv.cm .cmc.hit{animation:cmhit 1.2s .9s cubic-bezier(.22,1,.36,1) both}
-@keyframes cmhit{0%,100%{transform:none}35%{transform:translateX(-6px) scale(1.035)}}
+.pv-cm .cmc{position:absolute;left:9.71px;right:9.72px;top:9.8px;border-radius:8px;background:#fff;border:1.08px solid var(--line);padding:11px 12px 12px;font-size:11.875px;line-height:16px;color:var(--text);transition:opacity .36s cubic-bezier(.22,1,.36,1),transform .44s cubic-bezier(.22,1,.36,1),filter .3s ease,border-color .3s ease,background-color .3s ease}
+.pv-cm .cmc.enter{opacity:0;filter:blur(2px)}
+.pv-cm .cmc.is-latest{border-color:var(--amber-ink);background:var(--surface-2)}
+.cmc .ch{display:flex;align-items:center;gap:8px;height:22px}
+.cmc .ci{width:22px;height:22px;border-radius:6px;flex:none;display:block}
+.cmc .ch b{font-weight:500;font-size:12.955px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cmc .ch time{margin-left:auto;font-size:10.796px;color:var(--muted);white-space:nowrap}
+.cmc.is-latest .ch time{color:var(--amber-ink)}
+.cmc p{margin:0;font-size:11.875px;line-height:16px;color:var(--text)}
+.cmc .bub{position:relative;margin:8px 0 0 30px;padding:7px 10px;border-radius:9px}
+.cmc .tick{display:block;text-align:right;font-style:normal;font-size:9.716px;line-height:12px;color:#3d7fe0;margin-top:2px}
+.cmc .tick span{color:var(--muted)}
+.cmc .plain{position:relative;margin:7px 0 0 30px}
+.cmc .plain b,.cmc .plain strong{font-weight:600;font-size:11.875px;color:#101828}
+.cmc .plain small{margin-left:6px;font-size:10.796px;color:var(--muted)}
+.cmc .plain small.from{display:block;margin:0 0 4px}
+.cmc .plain p{margin-top:2px}
+.cmc .dots{position:absolute;right:0;top:-2px;font-style:normal;font-size:9px;letter-spacing:1px;color:var(--muted)}
+.cmc .plain.bar{padding-left:9px}
+.cmc .plain.bar::before{content:"";position:absolute;left:0;top:2px;bottom:2px;width:2.5px;border-radius:2px;background:#e5484d}
+.cmc .app{display:inline-block;margin-left:5px;padding:0 4px;border-radius:3px;background:#eaeaea;font-size:8.637px;line-height:13px;font-weight:600;color:#31343a;vertical-align:1px}
+.cmc .call{display:flex;align-items:center;gap:8px;margin:6px 0 0 30px}
+.cmc .call div{flex:1;min-width:0}
+.cmc .call strong{display:block;font-weight:600;font-size:15.114px;line-height:19px;color:#101828}
+.cmc .call small{display:block;font-size:10.796px;color:var(--muted)}
+.cmc .call span{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none}
+.cmc .call svg{width:16px;height:16px}
+.cmc .btn-dec{background:#e5484d}
+.cmc .btn-acc{background:#34a853}
+.pv.cm .cmc.hit.is-latest .ci{animation:cmring 1s ease-in-out .5s 2}
+@keyframes cmring{0%,100%{transform:none}20%{transform:rotate(-12deg)}40%{transform:rotate(10deg)}60%{transform:rotate(-6deg)}80%{transform:rotate(4deg)}}
 
 .pv-tl{transition:opacity .36s cubic-bezier(.22,1,.36,1),transform .44s cubic-bezier(.22,1,.36,1),filter .3s ease,border-color .3s ease,background-color .3s ease}
 .pv-tl.enter{opacity:0;filter:blur(2px)}
@@ -321,17 +342,17 @@ html.js .pcard.pre .chart path{transform:scaleY(0)}
 .pl{width:1483.705px;height:839px;background:var(--surface);border-radius:17.663px}
 .pl-left{position:absolute;left:33.12px;top:33.12px;bottom:33.12px;width:551.974px}
 .acc{width:529.895px;display:flex;flex-direction:column;align-items:flex-start;gap:12px}
-.acc-item{background:#fff;overflow:hidden;font-family:var(--f-inter);font-weight:300;color:var(--ink);transition:border-radius .35s ease,background-color .2s}
-.acc-item>button{display:flex;align-items:center;gap:24px;height:69px;padding:0 16px;font-size:21.196px;line-height:26.495px;letter-spacing:-.2208px;text-align:left;white-space:nowrap;font-weight:300;font-family:inherit}
+.acc-item{background:#fff;overflow:hidden;font-family:var(--f-sans);font-weight:400;color:var(--text);transition:border-radius .35s ease,background-color .2s}
+.acc-item>button{display:flex;align-items:center;gap:24px;height:69px;padding:0 17px 0 33px;font-size:20px;line-height:26px;letter-spacing:-.2px;text-align:left;white-space:nowrap;font-weight:400;font-family:inherit;color:inherit}
 .acc-item .plus{width:35.663px;height:35.663px;border-radius:55.197px;background:var(--chip);display:grid;place-items:center;flex:none;transition:transform .3s,background-color .2s}
 .acc-item .plus img{width:13.247px;height:13.247px}
 .acc-item>button:hover .plus{background:#e8e8e8}
 .acc-item .body{display:none}
 .acc-item:not(.open){border-radius:32.014px}
 .acc-item.open{width:100%;border-radius:22.079px;padding:33.12px}
-.acc-item.open>button{height:auto;padding:0;font-size:21.085px;cursor:default;white-space:normal}
+.acc-item.open>button{height:auto;padding:0;cursor:default;white-space:normal}
 .acc-item.open .plus{display:none}
-.acc-item.open .body{display:block;margin-top:17px;font-size:18.988px;line-height:25.832px;letter-spacing:-.1987px;color:var(--soft);animation:fadeup .35s ease both}
+.acc-item.open .body{display:block;margin-top:17px;font-size:18px;line-height:27px;color:var(--muted);animation:fadeup .35s ease both}
 @keyframes fadeup{from{opacity:0;transform:translateY(4px)}}
 .pl-cta{position:absolute;left:-.12px;top:730.88px}
 .pl-right{position:absolute;left:699.9px;top:33.12px;bottom:33.12px;width:750.684px;border-radius:13px;overflow:hidden;background:#efece8}
@@ -341,6 +362,49 @@ html.js .pcard.pre .chart path{transform:scaleY(0)}
 .pl-v>[role],.pl-fgs{position:absolute;inset:0;transform:translateY(12px);transition:transform .6s cubic-bezier(.22,1,.36,1)}
 .pl-v.on>[role],.pl-v.on .pl-fgs{transform:none}
 .pl-fg{position:absolute;display:block;max-width:none}
+/* pillars: staged reveal per state + looping flows */
+.plg{position:absolute}
+.plg>img{position:absolute;left:0;top:0;width:100%;height:100%;max-width:none;display:block}
+.pl-v .ly{transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1),clip-path .75s cubic-bezier(.22,1,.36,1);transition-delay:var(--d,0s)}
+html.js .pl-v:not(.play) .ly{opacity:0;transition:none}
+html.js .pl-v:not(.play) .ly.up{transform:translateY(10px)}
+html.js .pl-v:not(.play) .ly.down{transform:translateY(-10px)}
+html.js .pl-v:not(.play) .ly.left{transform:translateX(-14px)}
+html.js .pl-v:not(.play) .ly.pop{transform:scale(.85)}
+html.js .pl-v:not(.play) .ly.barx{transform:scaleX(0)}
+.pl-v .ly.clipd{clip-path:inset(0 0 0 0)}
+html.js .pl-v:not(.play) .ly.clipd{opacity:1;clip-path:inset(0 0 100% 0)}
+.pl-flw{position:absolute;overflow:visible;pointer-events:none}
+.plg>.pl-flw{left:0;top:0;width:100%;height:100%}
+.pl .fl{fill:none;stroke:#6d6d6d;stroke-width:1.6;stroke-linecap:round;stroke-dasharray:12 700;stroke-dashoffset:12;opacity:0;vector-effect:non-scaling-stroke}
+.pl.live .pl-v.on.play .fl{opacity:.9;animation:plflow 3.4s cubic-bezier(.45,0,.55,1) 1.6s infinite}
+.pl.live .pl-v.on.play .pl-flw.b .fl{animation-name:plflowb}
+@keyframes plflow{0%{stroke-dashoffset:12}45%,100%{stroke-dashoffset:calc(var(--len) * -1)}}
+@keyframes plflowb{0%,40%{stroke-dashoffset:12}88%,100%{stroke-dashoffset:calc(var(--len) * -1)}}
+.pl.live .pl-v.on.play .fl-pill.ly{animation:plpill 3.4s ease-in-out 1.6s infinite}
+.pl.live .pl-v.on.play .fl-pill.ly[style*="left:347.14px"]{animation-delay:2.9s}
+@keyframes plpill{0%,30%,100%{transform:none}38%{transform:scale(1.1)}}
+.pl-scan{position:absolute;left:17px;top:51px;width:614px;height:30px;border-radius:6px;background:rgba(240,164,57,.09);box-shadow:inset 2px 0 0 var(--amber);opacity:0;pointer-events:none}
+.pl.live .pl-v.on.play .pl-scan{opacity:1;animation:plscan 9.6s steps(12,jump-none) 1.3s infinite;transition:opacity .4s 1.3s}
+@keyframes plscan{from{transform:translateY(0)}to{transform:translateY(583px)}}
+.pl.live .pl-v.on.play .g-s3 .ly.q1,.pl.live .pl-v.on.play .g-s3 .n-q1,.pl.live .pl-v.on.play .g-s3 .n-q2{animation:plq 3s ease-in-out 1.8s infinite}
+.pl.live .pl-v.on.play .g-s3 .n-q2{animation-delay:2.2s}
+@keyframes plq{0%,70%,100%{transform:none}80%{transform:scale(1.35)}}
+.pl.live .pl-v.on.play .g-s4 .fl{animation-duration:2.4s;animation-name:plflow}
+.pl.live .pl-v.on.play .g-s4 .n-sync{animation:plq 2.4s ease-in-out 2.4s infinite}
+.pl.live .pl-v.on.play .g-s4 .n-arr{animation:plarr 2.4s ease-in-out 2.6s infinite}
+@keyframes plarr{0%,60%,100%{transform:none}75%{transform:translateX(4px)}}
+.pl.live .pl-v.on.play .g-s4 .n-ready{animation:plq 2.4s ease-in-out 2.8s infinite}
+.pl.live .pl-v.on.play .g-s5 .n-e1,.pl.live .pl-v.on.play .g-s5 .n-e2,.pl.live .pl-v.on.play .g-s5 .n-e3{animation:plread 3.6s ease-in-out 2s infinite}
+.pl.live .pl-v.on.play .g-s5 .n-e2{animation-delay:2.4s}
+.pl.live .pl-v.on.play .g-s5 .n-e3{animation-delay:2.8s}
+@keyframes plread{0%,40%,100%{transform:none;opacity:1}15%{transform:translateX(5px);opacity:.7}}
+.pl.live .pl-v.on.play .g-s5 .n-claim{animation:plq2 3.6s ease-in-out 3.4s infinite}
+@keyframes plq2{0%,80%,100%{filter:none}88%{filter:brightness(.94) saturate(1.3)}}
+.pl.live .pl-v.on.play .g-s6b .barx{animation:plbar 5s cubic-bezier(.22,1,.36,1) 2.2s infinite}
+.pl.live .pl-v.on.play .g-s6b .n-bar1{animation-delay:2.3s}.pl.live .pl-v.on.play .g-s6b .n-bar2{animation-delay:2.4s}.pl.live .pl-v.on.play .g-s6b .n-bar3{animation-delay:2.5s}
+@keyframes plbar{0%{transform:scaleX(1)}6%{transform:scaleX(0)}28%,100%{transform:scaleX(1)}}
+
 .fl-line{position:absolute}
 .fl-line img{position:absolute;width:auto;height:auto}
 .fl-node{position:absolute;overflow:hidden;border-radius:13.137px;background:#fff}
@@ -368,34 +432,32 @@ html.js .pcard.pre .chart path{transform:scaleY(0)}
 .tr h2{position:absolute;left:513.41px;top:167.04px;width:716.997px}
 .tr-steps{position:absolute;left:582.41px;top:604.14px;width:809.09px;height:20px;font-family:var(--f-mono);font-size:14px;line-height:20px;letter-spacing:1.12px;text-transform:uppercase;color:var(--text)}
 .tr-steps span{position:absolute;top:0;opacity:.68;white-space:nowrap}
-.tr-cta{position:absolute;left:556px;top:693px;height:46.366px;width:195.951px;padding:0;border-radius:110.395px;font-family:var(--f-inter);font-weight:300;font-size:16.67px;line-height:21.196px;letter-spacing:-.1766px}
+.tr-cta{position:absolute;left:556px;top:693px;height:46.366px;width:195.951px;padding:0;border-radius:110.395px;font-family:var(--f-sans);font-weight:400;font-size:15px;line-height:19.2px;letter-spacing:-.16px}
 
 /* ---------- audit ---------- */
 .audit-h{width:533.27px;max-width:calc(100% - 48px);height:137.89px;margin:0 auto;display:flex;align-items:center;justify-content:center;text-align:center}
 .audit-p{width:841px;max-width:calc(100% - 48px);margin:18.11px auto 0;height:69px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:16px;line-height:24px;color:var(--muted)}
 .audit-grid{width:var(--c-audit);margin:min(99px,5.156vw) auto 0;border-top:1px solid var(--line-2);display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1px}
 .audit-grid li{min-height:min(301px,15.677vw);padding:min(40px,2.083vw);border-right:1px solid var(--line-2);display:flex;flex-direction:column;align-items:flex-start;gap:12px}
-.audit-grid .ic32{width:32px;height:32px}
-.audit-grid .ic24{width:24px;height:24px}
-.audit-grid h3{font-size:24px;line-height:38.611px;letter-spacing:-.67px;color:var(--ink);white-space:nowrap}
-.audit-grid p{font-weight:300;font-size:18px;line-height:28px;letter-spacing:-.2518px;color:var(--soft)}
+.audit-grid h3{font-size:24px;line-height:30px;letter-spacing:-.48px;color:var(--text);white-space:nowrap}
+.audit-grid p{font-size:16px;line-height:24px;color:var(--muted)}
 
 /* ---------- evidence ---------- */
 .evidence{position:relative;margin-top:18px;padding:min(56px,2.917vw) 0 min(65px,3.385vw);background:#2a2a2a url(assets/figma/ev-bg.jpg) center/cover no-repeat;color:#fff}
-.ev-band{position:relative;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.ev-band{position:relative;border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1)}
 .ev-wrap{width:var(--c-ev)}
-.ev{position:relative;width:1800px;height:925px;border-left:1px solid var(--line);border-right:1px solid var(--line)}
-.ev-col1{position:absolute;left:0;top:0;bottom:0;width:571.55px;border-right:1px solid var(--line)}
+.ev{position:relative;width:1800px;height:925px;border-left:1px solid rgba(255,255,255,.1);border-right:1px solid rgba(255,255,255,.1)}
+.ev-col1{position:absolute;left:0;top:0;bottom:0;width:571.55px;border-right:1px solid rgba(255,255,255,.1)}
 .ev-col1 h2{position:absolute;left:102px;top:53px;width:381.29px;height:267.67px;display:flex;align-items:center;color:#fff}
 .ev-col1 p{position:absolute;left:102px;top:721px;width:395px;font-size:18px;line-height:27px}
-.ev-steps{position:absolute;left:1166.91px;right:0;top:0;bottom:0;border-left:1px solid var(--line)}
+.ev-steps{position:absolute;left:1166.91px;right:0;top:0;bottom:0;border-left:1px solid rgba(255,255,255,.1)}
 .ev-step{position:absolute;left:0;right:0;overflow:hidden}
-.ev-step:not(:last-child){border-bottom:1px solid var(--line)}
+.ev-step:not(:last-child){border-bottom:1px solid rgba(255,255,255,.1)}
 .ev-num{position:absolute;left:48px;top:64px;width:42.53px;height:25px;background:var(--paper)}
 .ev-num i{position:absolute;left:8px;top:50%;transform:translateY(-50%);width:5px;height:5px;background:var(--text)}
 .ev-num span{position:absolute;left:20px;top:calc(50% - .5px);transform:translateY(-50%);font-family:var(--f-mono);font-size:11px;line-height:15px;letter-spacing:.66px;color:var(--text)}
-.ev-step h3{position:absolute;left:48px;top:107px;font-weight:500;font-size:24px;line-height:30px;letter-spacing:-.432px;white-space:nowrap}
-.ev-step p{position:absolute;left:48px;top:152px;font-size:14px;line-height:20px;white-space:nowrap}
+.ev-step h3{position:absolute;left:48px;top:107px;font-weight:400;font-size:24px;line-height:30px;letter-spacing:-.48px;white-space:nowrap}
+.ev-step p{position:absolute;left:48px;top:152px;font-size:16px;line-height:24px;white-space:nowrap;color:rgba(255,255,255,.72)}
 /* RCA panel */
 .rca-clip{position:absolute;left:571.55px;top:0;width:595.36px;overflow:hidden}
 .rca-clip>.fit-in{width:595.36px;height:925px}
@@ -514,20 +576,20 @@ html.js .traced.pre .tr-art{opacity:0;transform:translate3d(0,12px,0)}
 /* ---------- pricing ---------- */
 .pricing-head{width:var(--c-pricing-head);margin:min(75px,3.906vw) auto 0;display:flex;align-items:center;gap:min(277px,14.427vw)}
 .pricing-head .h2{width:501.47px;height:133.5px;flex:none;display:flex;flex-direction:column;justify-content:center;text-align:center}
-.pricing-head p{width:659px;font-size:17px;line-height:26.35px;color:#665f59}
+.pricing-head p{width:659px;font-size:16px;line-height:24px;color:var(--muted)}
 .pricing{width:var(--c-pricing);margin-top:min(121.5px,6.328vw)}
 @media (min-width:1476px){.pricing{left:.5px}}
 .plans{width:1475px;height:924.18px;border:1.338px solid var(--line);border-radius:24px;overflow:hidden;display:grid;grid-template-columns:repeat(4,1fr)}
 .plan{position:relative;height:921.5px;padding:0 32.12px;border-right:1.338px solid var(--line)}
 .plan:last-child{border-right:0}
-.plan h3{margin-top:40.16px;font-weight:600;font-size:26.77px;line-height:32.123px;letter-spacing:-.4015px;color:var(--text)}
-.plan-badge{position:absolute;left:215.75px;right:32.12px;top:43.5px;height:25.431px;background:var(--amber);font-family:var(--f-mono);font-weight:500;font-size:13.385px;line-height:25.431px;letter-spacing:1.0708px;text-transform:uppercase;color:var(--text);padding-left:9.37px;white-space:nowrap}
+.plan h3{margin-top:40.16px;height:32.12px;display:flex;align-items:center;font-weight:500;font-size:24px;line-height:30px;letter-spacing:-.48px;color:var(--text)}
+.plan-badge{position:absolute;left:215.75px;right:32.12px;top:43.5px;height:25.431px;background:var(--amber);font-family:var(--f-mono);font-weight:500;font-size:12px;line-height:25.431px;letter-spacing:.96px;text-transform:uppercase;color:var(--text);padding-left:9.37px;white-space:nowrap}
 .plan-price{position:relative;margin-top:40.15px;height:66.924px;font-family:var(--f-mono);font-weight:500;font-size:66.924px;line-height:66.924px;letter-spacing:-4.0154px;color:var(--text);white-space:nowrap}
 .plan-price.custom{height:58.893px;font-size:58.893px;line-height:58.893px;letter-spacing:-2.0613px}
-.plan-price small{position:absolute;left:155.27px;top:38.82px;font-family:var(--f-sans);font-weight:400;font-size:17.4px;line-height:21.75px;letter-spacing:0;color:var(--muted)}
-.plan-note{font-size:17.4px;line-height:25.23px;color:var(--muted);height:22.754px;display:flex;align-items:center}
-.plan-desc{margin-top:53.55px;height:51.25px;display:flex;align-items:center;font-size:18.739px;line-height:27.171px;color:var(--muted)}
-.plan-btn{display:flex;align-items:center;justify-content:center;width:100%;height:42px;padding-top:1.8px;border-radius:100px;border:1px solid #000;background:var(--paper);color:var(--text);font-weight:500;font-size:18.739px;line-height:18.739px;letter-spacing:.7495px;transition:background-color .2s,color .2s}
+.plan-price small{position:absolute;left:155.27px;top:38.82px;font-family:var(--f-sans);font-weight:400;font-size:16px;line-height:21.75px;letter-spacing:0;color:var(--muted)}
+.plan-note{font-size:16px;line-height:24px;color:var(--muted);height:22.754px;display:flex;align-items:center}
+.plan-desc{margin-top:53.55px;height:51.25px;display:flex;align-items:center;font-size:18px;line-height:27px;color:var(--muted)}
+.plan-btn{display:flex;align-items:center;justify-content:center;width:100%;height:42px;padding-top:1.8px;border-radius:100px;border:1px solid #000;background:var(--paper);color:var(--text);font-weight:400;font-size:15px;line-height:19.2px;letter-spacing:-.16px;transition:background-color .2s,color .2s}
 .plan-btn:hover{background:#000;color:#fff}
 .plan-btn.dark{background:#000;color:#fff}
 .plan-btn.dark:hover{background:#2a2a2a}
@@ -540,24 +602,24 @@ html.js .traced.pre .tr-art{opacity:0;transform:translate3d(0,12px,0)}
 .plan.b .plan-rows{margin-top:53.75px}
 .plan-rows{border-top:1.338px solid var(--line)}
 .plan-rows li{height:56.952px;display:flex;align-items:center;justify-content:space-between;border-bottom:1.338px solid var(--line);padding-top:.5px}
-.plan-rows li span{font-size:17.4px;line-height:23.49px;color:var(--muted)}
-.plan-rows li b{font-family:var(--f-mono);font-weight:500;font-size:16.062px;line-height:22.486px;letter-spacing:.5622px;text-transform:uppercase;color:var(--text);margin-right:-.5px}
+.plan-rows li span{font-size:16px;line-height:24px;color:var(--muted)}
+.plan-rows li b{font-family:var(--f-mono);font-weight:500;font-size:16px;line-height:24px;letter-spacing:.56px;text-transform:uppercase;color:var(--text);margin-right:-.5px}
 .plan-rows li b.w{font-family:var(--f-sans);letter-spacing:0;text-transform:none}
-.plan-foot{position:absolute;left:32.12px;right:32.12px;bottom:33.36px;font-weight:500;font-size:17.4px;line-height:25.23px;color:var(--muted)}
+.plan-foot{position:absolute;left:32.12px;right:32.12px;bottom:33.36px;font-weight:400;font-size:16px;line-height:24px;color:var(--muted)}
 
 /* ---------- CTA + footer ---------- */
 .end{margin:min(75px,3.906vw) 24px 24px;border-radius:24px;overflow:hidden}
 .cta{position:relative;height:367.114px;background:#100e0c;border-top:.961px solid #39322d}
 .cta-in{position:relative;width:var(--c-cta);height:366.153px;margin:0 auto;transform:translateX(-.41px);border-left:.961px solid #39322d;border-right:.961px solid #39322d;display:flex;align-items:flex-start;justify-content:space-between;padding:0 min(152.93px,7.965vw) 0 min(85.53px,4.455vw)}
-.cta h2{font-size:52.857px;line-height:62.371px;letter-spacing:-1.85px;color:#f4f1eb;white-space:nowrap}
-.cta p{margin-top:17.72px;width:550.7px;font-size:15.377px;line-height:23.065px;color:#a49c95}
+.cta h2{font-size:47px;line-height:1.1;color:#f4f1eb;white-space:nowrap}
+.cta p{margin-top:17.72px;width:550.7px;font-size:16px;line-height:24px;color:#a49c95}
 .cta-copy{padding-top:121.05px}
 .cta-in>.btn{margin-top:163.77px}
 .foot{position:relative;height:154.755px;background:#171411;border-top:.961px solid #39322d;display:flex;justify-content:space-between;padding:0 max(min(144.2px,7.51vw),calc(50% - 791.8px)) 0 max(min(143.7px,7.484vw),calc(50% - 792.3px))}
 .foot-l{padding-top:46.13px}
 .foot-l img{width:103.791px;height:28.879px}
-.foot-l p{margin-top:15.41px;font-size:12.493px;line-height:17.299px;color:#a49c95}
-.foot-r{padding-top:71.14px;text-align:right;font-family:var(--f-mono);font-size:11.532px;line-height:14.415px;text-transform:uppercase;color:#a49c95}
+.foot-l p{margin-top:15.41px;font-size:13px;line-height:18px;color:#a49c95}
+.foot-r{padding-top:71.14px;text-align:right;font-family:var(--f-mono);font-size:12px;line-height:16px;text-transform:uppercase;color:#a49c95}
 .foot-r a{display:block;margin-top:7.7px;color:#ded9d3}
 .foot-r a:hover{color:#fff}
 
@@ -781,7 +843,7 @@ html.js .traced.pre .tr-art{opacity:0;transform:translate3d(0,12px,0)}
           </div>
 
           <span class="pv-label pv-tlabel" style="left:1318.01px;top:158.16px"><b>Incident timeline</b><b>Contact method</b></span>
-          <div class="pv-dash pv-tlbox" style="left:1276.06px;right:0;top:173.81px;height:375.692px;border-radius:16px"><div class="pv-cm" aria-hidden="true"><div class="cmc" style="width:267px;height:89px;z-index:1"><span><img src="assets/figma/cm-0.webp" alt="" style="inset:0;width:100%;height:100%"></span><i style="top:44.120px;width:27px;height:27px"></i></div><div class="cmc" style="width:267px;height:92.993px;z-index:2"><span><img src="assets/figma/cm-1.webp" alt="" style="left:-2.37%;top:-.76%;width:105.28%;height:100.76%"></span><i style="top:43.210px;width:33px;height:27px"></i></div><div class="cmc" style="width:267px;height:90.413px;z-index:3"><span><img src="assets/figma/cm-2.webp" alt="" style="left:-.53%;top:-.25%;width:101.33%;height:99.74%"></span><i style="top:39.307px;width:33px;height:30px"></i></div><div class="cmc" style="width:267px;height:89px;z-index:4"><span><img src="assets/figma/cm-3.webp" alt="" style="left:-.26%;top:-.36%;width:100.72%;height:100.72%"></span><i style="top:40.984px;width:24px;height:30px"></i></div><div class="cmc" style="width:259.955px;height:86.652px;z-index:5"><span><img src="assets/figma/cm-4.webp" alt="" style="left:-3.06%;top:-6.91%;width:109.02%;height:109.02%"></span><i style="top:38.074px;width:29px;height:30px"></i></div><div class="cmc" style="width:264.182px;height:88.061px;z-index:6"><span><img src="assets/figma/cm-5.webp" alt="" style="left:-1.33%;top:-2%;width:104%;height:104%"></span></div><div class="cmc" style="width:261.364px;height:87.121px;z-index:7"><span><img src="assets/figma/cm-6.webp" alt="" style="left:-2.16%;top:-3.5%;width:107.01%;height:107.01%"></span><i style="top:36.541px;width:29px;height:30px"></i></div><div class="cmc" style="width:265.591px;height:88.53px;z-index:8"><span><img src="assets/figma/cm-7.webp" alt="" style="left:-.53%;top:-.93%;width:101.86%;height:101.86%"></span></div></div>
+          <div class="pv-dash pv-tlbox" style="left:1276.06px;right:0;top:173.81px;height:375.692px;border-radius:16px"><div class="pv-cm" aria-hidden="true"></div><template id="cm-cards"><div class="cmc" data-ch="wa"><div class="ch"><img class="ci" src="assets/figma/cm-ic-wa.png" alt=""><b>WhatsApp</b><time>10:24 AM</time></div>   <div class="bub" style="background:#dcf5d3"><p>P1 incident: API latency spike. <br>Acknowledge now.</p><em class="tick">✓✓ <span>10:24 AM</span></em></div></div><div class="cmc" data-ch="tg"><div class="ch"><img class="ci" src="assets/figma/cm-ic-tg.png" alt=""><b>Telegram</b><time>10:24 AM</time></div>   <div class="bub" style="background:#e5f1fc"><p>P1 incident: API latency spike. <br>Acknowledge now.</p></div></div><div class="cmc" data-ch="li"><div class="ch"><img class="ci" src="assets/figma/cm-ic-li.png" alt=""><b>LinkedIn</b><time>10:24 AM</time></div>   <div class="plain"><b>Taylor Kim</b><small>10:24 AM</small><i class="dots">•••</i><p>P1 incident: API latency spike. <br>Acknowledge now.</p></div></div><div class="cmc" data-ch="sms"><div class="ch"><img class="ci" src="assets/figma/cm-ic-sms.png" alt=""><b>SMS</b><time>Today 10:24 AM</time></div>   <div class="bub" style="background:#eef0f3"><p>P1 incident: API latency spike. <br>Acknowledge now.</p></div></div><div class="cmc" data-ch="fb"><div class="ch"><img class="ci" src="assets/figma/cm-ic-fb.png" alt=""><b>Facebook Messenger</b><time>10:24 AM</time></div>   <div class="bub" style="background:#eef0f3"><p>P1 incident: API latency spike. <br>Acknowledge now.</p></div></div><div class="cmc" data-ch="call"><div class="ch"><img class="ci" src="assets/figma/cm-ic-call.png" alt=""><b>Phone Call</b><time>Incoming call</time></div>   <div class="call"><div><strong>On-call Alert</strong><small>Engineering Ops</small></div><span class="btn-dec"><svg viewBox="0 0 24 24"><path d="M3 14.5c5-4.7 13-4.7 18 0l-2.3 2.3-3.2-1.6v-2.4c-2.3-.8-4.7-.8-7 0v2.4l-3.2 1.6z" fill="#fff"/></svg></span><span class="btn-acc"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z" fill="#fff"/></svg></span></div></div><div class="cmc" data-ch="sl"><div class="ch"><img class="ci" src="assets/figma/cm-ic-sl.png" alt=""><b>Slack</b><time>Today 10:24 AM</time></div>   <div class="plain bar"><b>AlertBot</b><span class="app">APP</span><small>10:24 AM</small><p>P1 incident: API latency spike. <br>Acknowledge now.</p></div></div><div class="cmc" data-ch="em"><div class="ch"><img class="ci" src="assets/figma/cm-ic-em.png" alt=""><b>Email</b><time>Today 10:24 AM</time></div>   <div class="plain"><strong>[P1] API latency spike</strong><i class="dots">•••</i><small class="from">from alerts@acme.com</small><p>P1 incident: API latency spike. <br>Acknowledge now.</p></div></div></template>
             <div class="pv-tl is-latest">
               <span class="op">OP</span><span class="da">DA</span><span class="src">OpsTracer</span><span class="new">NEW</span>
               <p>Monitoring alert opened <br>incident INC-2291</p>
@@ -899,12 +961,12 @@ html.js .traced.pre .tr-art{opacity:0;transform:translate3d(0,12px,0)}
               <div class="pl-v on" data-v="0">
                 <img class="pl-glass" src="assets/figma/pl-bg.jpg" alt="">
               <div role="img" aria-label="Escalation flow: when priority is urgent, rotate or notify by priority, then retry if still unacknowledged">
-                <div class="fl-line" style="left:372.1px;top:241.04px;width:181px;height:96px"><img src="assets/figma/pl-line-tr.svg" alt="" style="left:-1.47%;top:-2.78%;width:103.06%;height:102.78%"></div>
-                <div class="fl-line" style="left:372.1px;top:427.04px;width:181px;height:122px;transform:scaleX(-1)"><img src="assets/figma/pl-line-br.svg" alt="" style="left:-1.47%;top:-2.19%;width:103.06%;height:102.19%"></div>
-                <div class="fl-line" style="left:191.1px;top:241.04px;width:181px;height:96px;transform:scaleX(-1)"><img src="assets/figma/pl-line-tl.svg" alt="" style="left:-1.47%;top:-2.78%;width:103.06%;height:102.78%"></div>
-                <div class="fl-line" style="left:191.1px;top:427.04px;width:181px;height:122px"><img src="assets/figma/pl-line-bl.svg" alt="" style="left:-1.47%;top:-2.19%;width:103.06%;height:102.19%"></div>
+                <div class="fl-line ly clipd" style="--d:0.25s;left:372.1px;top:241.04px;width:181px;height:96px"><img src="assets/figma/pl-line-tr.svg" alt="" style="left:-1.47%;top:-2.78%;width:103.06%;height:102.78%"><svg class="pl-flw t" viewBox="0 0 186.553 98.6667" preserveAspectRatio="none" aria-hidden="true" style="left:-1.47%;top:-2.78%;width:103.06%;height:102.78%"><path class="fl" style="--len:250px" d="M2.667 2.667V22.7C2.667 36.8 14.1 48.2 28.2 48.2H158.2C172.3 48.2 183.667 59.6 183.667 73.7V93"/></svg></div>
+                <div class="fl-line ly clipd" style="--d:0.95s;left:372.1px;top:427.04px;width:181px;height:122px;transform:scaleX(-1)"><img src="assets/figma/pl-line-br.svg" alt="" style="left:-1.47%;top:-2.19%;width:103.06%;height:102.19%"><svg class="pl-flw b" viewBox="0 0 186.553 124.667" preserveAspectRatio="none" aria-hidden="true" style="left:-1.47%;top:-2.19%;width:103.06%;height:102.19%"><path class="fl" style="--len:276px" d="M2.667 2.667V35C2.667 49.1 14.1 60.5 28.2 60.5H158.2C172.3 60.5 183.667 71.9 183.667 86V119"/></svg></div>
+                <div class="fl-line ly clipd" style="--d:0.25s;left:191.1px;top:241.04px;width:181px;height:96px;transform:scaleX(-1)"><img src="assets/figma/pl-line-tl.svg" alt="" style="left:-1.47%;top:-2.78%;width:103.06%;height:102.78%"><svg class="pl-flw t" viewBox="0 0 186.553 98.6667" preserveAspectRatio="none" aria-hidden="true" style="left:-1.47%;top:-2.78%;width:103.06%;height:102.78%"><path class="fl" style="--len:250px" d="M2.667 2.667V22.7C2.667 36.8 14.1 48.2 28.2 48.2H158.2C172.3 48.2 183.667 59.6 183.667 73.7V93"/></svg></div>
+                <div class="fl-line ly clipd" style="--d:0.95s;left:191.1px;top:427.04px;width:181px;height:122px"><img src="assets/figma/pl-line-bl.svg" alt="" style="left:-1.47%;top:-2.19%;width:103.06%;height:102.19%"><svg class="pl-flw b" viewBox="0 0 186.553 124.667" preserveAspectRatio="none" aria-hidden="true" style="left:-1.47%;top:-2.19%;width:103.06%;height:102.19%"><path class="fl" style="--len:276px" d="M2.667 2.667V35C2.667 49.1 14.1 60.5 28.2 60.5H158.2C172.3 60.5 183.667 71.9 183.667 86V119"/></svg></div>
 
-                <div class="fl-node" style="left:248.1px;top:142.88px;width:255px">
+                <div class="fl-node ly down" style="--d:0s;left:248.1px;top:142.88px;width:255px">
                   <div class="fl-hd">
                     <div class="fl-name" style="width:98.899px"><span class="fl-ib" style="background:var(--blue-bg);border-radius:2.761px"><img src="assets/figma/pl-flag.svg" alt=""></span>Start</div>
                     <span class="tag" style="flex:1;min-width:0;gap:6px;padding-inline:4px;border-color:#e8e8e8"><img src="assets/figma/pl-bars-red.svg" alt="">Priority is Urgent</span>
@@ -915,7 +977,7 @@ html.js .traced.pre .tr-art{opacity:0;transform:translate3d(0,12px,0)}
                   </div>
                 </div>
 
-                <div class="fl-node b" style="left:384.1px;top:336.88px;width:338px;height:90px">
+                <div class="fl-node b ly up" style="--d:0.65s;left:384.1px;top:336.88px;width:338px;height:90px">
                   <div class="fl-hd" style="align-items:flex-start">
                     <div class="fl-name" style="width:80.137px"><span class="fl-ib" style="background:rgba(238,146,133,.12)"><img src="assets/figma/pl-bell-red.svg" alt=""></span>Notify</div>
                     <div class="tags" style="width:231.216px">
@@ -930,7 +992,7 @@ html.js .traced.pre .tr-art{opacity:0;transform:translate3d(0,12px,0)}
                   </div>
                 </div>
 
-                <div class="fl-node b" style="left:29.1px;top:336.88px;width:324px;height:90px">
+                <div class="fl-node b ly up" style="--d:0.75s;left:29.1px;top:336.88px;width:324px;height:90px">
                   <div class="fl-hd" style="align-items:flex-start">
                     <div class="fl-name" style="width:80.137px"><span class="fl-ib" style="background:rgba(240,164,57,.12)"><img src="assets/figma/pl-bell-amber.svg" alt=""></span>Notify</div>
                     <div class="tags" style="width:231.216px">
@@ -945,11 +1007,11 @@ html.js .traced.pre .tr-art{opacity:0;transform:translate3d(0,12px,0)}
                   </div>
                 </div>
 
-                <span class="fl-pill" style="left:347.14px;top:506.04px;width:49.922px;height:21.458px;background:#696969">Then</span>
-                <span class="fl-pill" style="left:245.1px;top:274.88px;width:65px;background:var(--green)">Rotate</span>
-                <span class="fl-pill" style="left:424.1px;top:274.88px;width:87px;background:#f27765">Priority</span>
+                <span class="fl-pill ly pop" style="--d:1.15s;left:347.14px;top:506.04px;width:49.922px;height:21.458px;background:#696969">Then</span>
+                <span class="fl-pill ly pop" style="--d:0.5s;left:245.1px;top:274.88px;width:65px;background:var(--green)">Rotate</span>
+                <span class="fl-pill ly pop" style="--d:0.5s;left:424.1px;top:274.88px;width:87px;background:#f27765">Priority</span>
 
-                <div class="fl-node b" style="left:209.1px;top:547.88px;width:334px;height:82px">
+                <div class="fl-node b ly up" style="--d:1.3s;left:209.1px;top:547.88px;width:334px;height:82px">
                   <div class="fl-hd" style="align-items:flex-start">
                     <div class="fl-name" style="width:80.137px"><span class="fl-ib" style="background:rgba(96,22,175,.12)"><img src="assets/figma/pl-retry.svg" alt=""></span>Retry</div>
                     <div class="tags">
@@ -966,23 +1028,23 @@ html.js .traced.pre .tr-art{opacity:0;transform:translate3d(0,12px,0)}
               </div>
               <div class="pl-v" data-v="1" role="img" aria-label="Incident list: alerts across services with priority and status" aria-hidden="true">
                 <img class="pl-glass" src="assets/figma/pl-bg-2.jpg" alt="" loading="lazy" decoding="async">
-                <div class="pl-fgs"><img class="pl-fg" src="assets/figma/pl-v2.svg" alt="" loading="lazy" decoding="async" style="left:75.28px;top:70.972px;width:676px;height:702px"></div>
+                <div class="pl-fgs"><div class="plg g-s2" style="left:75.28px;top:70.972px;width:676px;height:702px"><img class="ly fade n-base" src="assets/figma/plx-s2-base.svg" alt="" loading="lazy" decoding="async" style="--d:0s;transform-origin:338.5px 351.0px"><img class="ly down n-hd" src="assets/figma/plx-s2-hd.svg" alt="" loading="lazy" decoding="async" style="--d:0.1s;transform-origin:339.0px 20.0px"><img class="ly up n-r2" src="assets/figma/plx-s2-r2.svg" alt="" loading="lazy" decoding="async" style="--d:0.2s;transform-origin:338.0px 66.0px"><img class="ly up n-r3" src="assets/figma/plx-s2-r3.svg" alt="" loading="lazy" decoding="async" style="--d:0.25s;transform-origin:323.0px 120.5px"><img class="ly up n-r4" src="assets/figma/plx-s2-r4.svg" alt="" loading="lazy" decoding="async" style="--d:0.3s;transform-origin:323.5px 173.0px"><img class="ly up n-r5" src="assets/figma/plx-s2-r5.svg" alt="" loading="lazy" decoding="async" style="--d:0.35s;transform-origin:323.5px 227.5px"><img class="ly up n-r6" src="assets/figma/plx-s2-r6.svg" alt="" loading="lazy" decoding="async" style="--d:0.4s;transform-origin:323.5px 278.5px"><img class="ly up n-r7" src="assets/figma/plx-s2-r7.svg" alt="" loading="lazy" decoding="async" style="--d:0.45s;transform-origin:323.5px 331.5px"><img class="ly up n-r8" src="assets/figma/plx-s2-r8.svg" alt="" loading="lazy" decoding="async" style="--d:0.5s;transform-origin:323.5px 384.0px"><img class="ly up n-r9" src="assets/figma/plx-s2-r9.svg" alt="" loading="lazy" decoding="async" style="--d:0.55s;transform-origin:323.5px 437.0px"><img class="ly up n-r10" src="assets/figma/plx-s2-r10.svg" alt="" loading="lazy" decoding="async" style="--d:0.6s;transform-origin:323.5px 489.5px"><img class="ly up n-r11" src="assets/figma/plx-s2-r11.svg" alt="" loading="lazy" decoding="async" style="--d:0.65s;transform-origin:323.5px 542.0px"><img class="ly up n-r12" src="assets/figma/plx-s2-r12.svg" alt="" loading="lazy" decoding="async" style="--d:0.7s;transform-origin:323.5px 595.0px"><img class="ly up n-r13" src="assets/figma/plx-s2-r13.svg" alt="" loading="lazy" decoding="async" style="--d:0.75s;transform-origin:323.5px 648.0px"><img class="ly up n-r14" src="assets/figma/plx-s2-r14.svg" alt="" loading="lazy" decoding="async" style="--d:0.8s;transform-origin:323.5px 694.5px"><i class="pl-scan"></i></div></div>
               </div>
               <div class="pl-v" data-v="2" role="img" aria-label="Shift handoff card: deploy 8f21c removed the payload guard, proven and open items" aria-hidden="true">
                 <img class="pl-glass" src="assets/figma/pl-bg-3.jpg" alt="" loading="lazy" decoding="async">
-                <div class="pl-fgs"><img class="pl-fg" src="assets/figma/pl-v3.svg" alt="" loading="lazy" decoding="async" style="left:199.098px;top:226.882px;width:353px;height:318px"></div>
+                <div class="pl-fgs"><div class="plg g-s3" style="left:199.098px;top:226.882px;width:353px;height:318px"><img class="ly up n-base" src="assets/figma/plx-s3-base.svg" alt="" loading="lazy" decoding="async" style="--d:0s;transform-origin:176.5px 159.0px"><img class="ly fade n-hd" src="assets/figma/plx-s3-hd.svg" alt="" loading="lazy" decoding="async" style="--d:0.15s;transform-origin:168.0px 25.5px"><img class="ly up n-ti" src="assets/figma/plx-s3-ti.svg" alt="" loading="lazy" decoding="async" style="--d:0.3s;transform-origin:141.5px 98.0px"><img class="ly pop n-pill" src="assets/figma/plx-s3-pill.svg" alt="" loading="lazy" decoding="async" style="--d:0.5s;transform-origin:93.0px 77.5px"><img class="ly up n-s1" src="assets/figma/plx-s3-s1.svg" alt="" loading="lazy" decoding="async" style="--d:0.6s;transform-origin:86.0px 194.5px"><img class="ly up n-s2" src="assets/figma/plx-s3-s2.svg" alt="" loading="lazy" decoding="async" style="--d:0.7s;transform-origin:253.0px 187.0px"><img class="ly fade n-ft" src="assets/figma/plx-s3-ft.svg" alt="" loading="lazy" decoding="async" style="--d:1.05s;transform-origin:235.5px 296.5px"><img class="ly pop n-q1" src="assets/figma/plx-s3-q1.svg" alt="" loading="lazy" decoding="async" style="--d:0.85s;transform-origin:22.5px 184.5px"><img class="ly pop n-q2" src="assets/figma/plx-s3-q2.svg" alt="" loading="lazy" decoding="async" style="--d:0.95s;transform-origin:22.5px 211.5px"></div></div>
               </div>
               <div class="pl-v" data-v="3" role="img" aria-label="Context handoff: IN-2841 synced from Maya Tran to Sam Lee with cause and evidence" aria-hidden="true">
                 <img class="pl-glass" src="assets/figma/pl-bg-4.jpg" alt="" loading="lazy" decoding="async">
-                <div class="pl-fgs"><img class="pl-fg" src="assets/figma/pl-v4.svg" alt="" loading="lazy" decoding="async" style="left:146.098px;top:138.0px;width:458px;height:497px"></div>
+                <div class="pl-fgs"><div class="plg g-s4" style="left:146.098px;top:138.0px;width:458px;height:497px"><img class="ly up n-base" src="assets/figma/plx-s4-base.svg" alt="" loading="lazy" decoding="async" style="--d:0.8s;transform-origin:229.0px 336.0px"><img class="ly down n-note" src="assets/figma/plx-s4-note.svg" alt="" loading="lazy" decoding="async" style="--d:0s;transform-origin:229.0px 38.0px"><img class="ly clipd n-conn" src="assets/figma/plx-s4-conn.svg" alt="" loading="lazy" decoding="async" style="--d:0.35s;transform-origin:229.0px 125.0px"><img class="ly pop n-sync" src="assets/figma/plx-s4-sync.svg" alt="" loading="lazy" decoding="async" style="--d:0.65s;transform-origin:229.0px 125.5px"><img class="ly fade n-ch" src="assets/figma/plx-s4-ch.svg" alt="" loading="lazy" decoding="async" style="--d:0.95s;transform-origin:229.0px 211.0px"><img class="ly up n-det" src="assets/figma/plx-s4-det.svg" alt="" loading="lazy" decoding="async" style="--d:1.1s;transform-origin:215.0px 338.5px"><img class="ly left n-p1" src="assets/figma/plx-s4-p1.svg" alt="" loading="lazy" decoding="async" style="--d:1.25s;transform-origin:71.5px 463.0px"><img class="ly fade n-arr" src="assets/figma/plx-s4-arr.svg" alt="" loading="lazy" decoding="async" style="--d:1.4s;transform-origin:155.0px 463.0px"><img class="ly left n-p2" src="assets/figma/plx-s4-p2.svg" alt="" loading="lazy" decoding="async" style="--d:1.5s;transform-origin:232.5px 463.0px"><img class="ly pop n-ready" src="assets/figma/plx-s4-ready.svg" alt="" loading="lazy" decoding="async" style="--d:1.65s;transform-origin:381.0px 463.0px"><svg class="pl-flw" viewBox="0 0 458 497" aria-hidden="true"><path class="fl" style="--len:92px" d="M228.848 81V170"/></svg></div></div>
               </div>
               <div class="pl-v" data-v="4" role="img" aria-label="Incident channel: Ops Bot posts evidence-backed conclusions with linked sources" aria-hidden="true">
                 <img class="pl-glass" src="assets/figma/pl-bg-5.jpg" alt="" loading="lazy" decoding="async">
-                <div class="pl-fgs"><img class="pl-fg" src="assets/figma/pl-v5.svg" alt="" loading="lazy" decoding="async" style="left:98.098px;top:80.0px;width:653px;height:658px"></div>
+                <div class="pl-fgs"><div class="plg g-s5" style="left:98.098px;top:80.0px;width:653px;height:658px"><img class="ly fade n-base" src="assets/figma/plx-s5-base.svg" alt="" loading="lazy" decoding="async" style="--d:0s;transform-origin:357.5px 435.0px"><img class="ly left n-side" src="assets/figma/plx-s5-side.svg" alt="" loading="lazy" decoding="async" style="--d:0.05s;transform-origin:31.0px 329.0px"><img class="ly down n-hdr" src="assets/figma/plx-s5-hdr.svg" alt="" loading="lazy" decoding="async" style="--d:0.15s;transform-origin:357.5px 22.5px"><img class="ly up n-m1" src="assets/figma/plx-s5-m1.svg" alt="" loading="lazy" decoding="async" style="--d:0.3s;transform-origin:357.5px 128.5px"><img class="ly up n-m2h" src="assets/figma/plx-s5-m2h.svg" alt="" loading="lazy" decoding="async" style="--d:0.55s;transform-origin:227.5px 248.5px"><img class="ly fade n-m2t" src="assets/figma/plx-s5-m2t.svg" alt="" loading="lazy" decoding="async" style="--d:0.65s;transform-origin:321.5px 291.0px"><img class="ly up n-claim" src="assets/figma/plx-s5-claim.svg" alt="" loading="lazy" decoding="async" style="--d:0.8s;transform-origin:390.0px 346.0px"><img class="ly up n-e1" src="assets/figma/plx-s5-e1.svg" alt="" loading="lazy" decoding="async" style="--d:0.95s;transform-origin:390.0px 430.5px"><img class="ly up n-e2" src="assets/figma/plx-s5-e2.svg" alt="" loading="lazy" decoding="async" style="--d:1.05s;transform-origin:390.0px 504.5px"><img class="ly up n-e3" src="assets/figma/plx-s5-e3.svg" alt="" loading="lazy" decoding="async" style="--d:1.15s;transform-origin:397.5px 568.5px"><img class="ly fade n-foot" src="assets/figma/plx-s5-foot.svg" alt="" loading="lazy" decoding="async" style="--d:1.3s;transform-origin:390.0px 623.0px"></div></div>
               </div>
               <div class="pl-v" data-v="5" role="img" aria-label="Trace 6C92E: span breakdown and related signals across Datadog, GitHub and AWS" aria-hidden="true">
                 <img class="pl-glass" src="assets/figma/pl-bg-6.jpg" alt="" loading="lazy" decoding="async">
-                <div class="pl-fgs"><img class="pl-fg" src="assets/figma/pl-v6a.svg" alt="" loading="lazy" decoding="async" style="left:278.098px;top:68.0px;width:420px;height:139px"><img class="pl-fg" src="assets/figma/pl-v6b.svg" alt="" loading="lazy" decoding="async" style="left:112.098px;top:253.02px;width:527px;height:265px"><img class="pl-fg" src="assets/figma/pl-v6c.svg" alt="" loading="lazy" decoding="async" style="left:47.098px;top:576.0px;width:441px;height:141px"></div>
+                <div class="pl-fgs"><div class="plg g-s6a" style="left:278.098px;top:68.0px;width:420px;height:139px"><img class="ly down n-base" src="assets/figma/plx-s6a-base.svg" alt="" loading="lazy" decoding="async" style="--d:0s;transform-origin:210.0px 69.5px"><img class="ly fade n-top" src="assets/figma/plx-s6a-top.svg" alt="" loading="lazy" decoding="async" style="--d:0.15s;transform-origin:205.5px 37.5px"><img class="ly up n-b1" src="assets/figma/plx-s6a-b1.svg" alt="" loading="lazy" decoding="async" style="--d:0.3s;transform-origin:64.5px 107.5px"><img class="ly up n-b2" src="assets/figma/plx-s6a-b2.svg" alt="" loading="lazy" decoding="async" style="--d:0.38s;transform-origin:277.0px 107.5px"></div><div class="plg g-s6b" style="left:112.098px;top:253.02px;width:527px;height:265px"><img class="ly up n-base" src="assets/figma/plx-s6b-base.svg" alt="" loading="lazy" decoding="async" style="--d:0.35s;transform-origin:263.5px 132.5px"><img class="ly fade n-hd" src="assets/figma/plx-s6b-hd.svg" alt="" loading="lazy" decoding="async" style="--d:0.5s;transform-origin:263.5px 34.0px"><img class="ly fade n-th" src="assets/figma/plx-s6b-th.svg" alt="" loading="lazy" decoding="async" style="--d:0.58s;transform-origin:263.5px 65.5px"><img class="ly up n-r0" src="assets/figma/plx-s6b-r0.svg" alt="" loading="lazy" decoding="async" style="--d:0.65s;transform-origin:263.5px 102.0px"><img class="ly up n-r1" src="assets/figma/plx-s6b-r1.svg" alt="" loading="lazy" decoding="async" style="--d:0.73s;transform-origin:263.5px 139.0px"><img class="ly up n-r2" src="assets/figma/plx-s6b-r2.svg" alt="" loading="lazy" decoding="async" style="--d:0.81s;transform-origin:263.5px 176.0px"><img class="ly up n-r3" src="assets/figma/plx-s6b-r3.svg" alt="" loading="lazy" decoding="async" style="--d:0.89s;transform-origin:264.0px 207.5px"><img class="ly barx n-bar0" src="assets/figma/plx-s6b-bar0.svg" alt="" loading="lazy" decoding="async" style="--d:0.85s;transform-origin:159px 96.0px"><img class="ly barx n-bar1" src="assets/figma/plx-s6b-bar1.svg" alt="" loading="lazy" decoding="async" style="--d:0.95s;transform-origin:159px 133.0px"><img class="ly barx n-bar2" src="assets/figma/plx-s6b-bar2.svg" alt="" loading="lazy" decoding="async" style="--d:1.05s;transform-origin:159px 170.0px"><img class="ly barx n-bar3" src="assets/figma/plx-s6b-bar3.svg" alt="" loading="lazy" decoding="async" style="--d:1.15s;transform-origin:159px 207.0px"></div><div class="plg g-s6c" style="left:47.098px;top:576.0px;width:441px;height:141px"><img class="ly up n-base" src="assets/figma/plx-s6c-base.svg" alt="" loading="lazy" decoding="async" style="--d:1.0s;transform-origin:220.5px 70.5px"><img class="ly fade n-btn" src="assets/figma/plx-s6c-btn.svg" alt="" loading="lazy" decoding="async" style="--d:1.15s;transform-origin:81.0px 26.5px"><img class="ly up n-rw1" src="assets/figma/plx-s6c-rw1.svg" alt="" loading="lazy" decoding="async" style="--d:1.25s;transform-origin:221.0px 79.5px"><img class="ly up n-rw2" src="assets/figma/plx-s6c-rw2.svg" alt="" loading="lazy" decoding="async" style="--d:1.35s;transform-origin:221.5px 117.0px"></div></div>
               </div>
             </div>
           </div>
@@ -1014,11 +1076,11 @@ html.js .traced.pre .tr-art{opacity:0;transform:translate3d(0,12px,0)}
   <h2 class="h2 audit-h rv">AI your team can audit <br>under pressure.</h2>
   <p class="audit-p rv"><span class="nw">OpsTracer does not ask engineers to trust a black box during a production incident. It builds a traceable case <br class="d-br"> file: what happened, when it happened, which systems confirm it, and how strongly the evidence supports <br class="d-br"> the conclusion.</span></p>
   <ol class="audit-grid">
-    <li class="rv"><img class="ic32" src="assets/figma/au-alert.svg" alt=""><h3>Alert</h3><p>Respond to the right signal, <br class="br-xl">not every signal.</p></li>
-    <li class="rv"><img class="ic24" src="assets/figma/au-oncall.svg" alt=""><h3>On-call</h3><p>Reach the engineer who can fix it, <br class="br-xl">not just the next name in rotation.</p></li>
-    <li class="rv"><img class="ic32" src="assets/figma/au-investigate.svg" alt=""><h3>Investigation</h3><p>Follow one trace instead of <br class="br-xl">jumping between six tools.</p></li>
-    <li class="rv"><img class="ic32" src="assets/figma/au-rootcause.svg" alt=""><h3>Root cause</h3><p>Prove what caused the failure, <br class="br-xl">not just what happened nearby.</p></li>
-    <li class="rv"><img class="ic32" src="assets/figma/au-prevent.svg" alt=""><h3>Prevention</h3><p>Fix the system instead of <br class="br-xl">writing another incident report.</p></li>
+    <li class="rv"><h3>Alert</h3><p>Respond to the right signal, <br class="br-xl">not every signal.</p></li>
+    <li class="rv"><h3>On-call</h3><p>Reach the engineer who can fix it, <br class="br-xl">not just the next name in rotation.</p></li>
+    <li class="rv"><h3>Investigation</h3><p>Follow one trace instead of <br class="br-xl">jumping between six tools.</p></li>
+    <li class="rv"><h3>Root cause</h3><p>Prove what caused the failure, <br class="br-xl">not just what happened nearby.</p></li>
+    <li class="rv"><h3>Prevention</h3><p>Fix the system instead of <br class="br-xl">writing another incident report.</p></li>
   </ol>
 </section>
 
@@ -1326,7 +1388,9 @@ html.js .traced.pre .tr-art{opacity:0;transform:translate3d(0,12px,0)}
       });
       var idx=[].indexOf.call(acc.querySelectorAll('.acc-item'),item);
       var pl=acc.closest('.pl');
-      if(pl)pl.querySelectorAll('.pl-v').forEach(function(v){var on=+v.dataset.v===idx;v.classList.toggle('on',on);v.setAttribute('aria-hidden',on?'false':'true');});
+      if(pl)pl.querySelectorAll('.pl-v').forEach(function(v){var on=+v.dataset.v===idx;v.classList.toggle('on',on);v.setAttribute('aria-hidden',on?'false':'true');
+        if(on&&pl.dataset.seen&&!matchMedia('(prefers-reduced-motion: reduce)').matches){v.classList.remove('play');void v.offsetWidth;v.classList.add('play');}
+        else if(!on&&pl.dataset.seen&&!matchMedia('(prefers-reduced-motion: reduce)').matches)setTimeout(function(){if(!v.classList.contains('on'))v.classList.remove('play');},460);});
     });
   });
 
@@ -1341,14 +1405,39 @@ html.js .traced.pre .tr-art{opacity:0;transform:translate3d(0,12px,0)}
     var chips=[].slice.call(pv.querySelectorAll('.pv-chip')), steps=[].slice.call(pv.querySelectorAll('.pv-step'));
     var msg=pv.querySelector('.pv-msg'), msgP=msg.querySelector('p'), promptHTML=msgP.innerHTML, prompt=msgP.textContent.replace(/\s+/g,' ').trim();
     var status=pv.querySelector('.pv-shimmer'), tlBox=pv.querySelector('.pv-tl').parentNode;
-    var cmCards=[].slice.call(pv.querySelectorAll('.cmc'));
+    var cmBox=pv.querySelector('.pv-cm'), cmTpl=document.getElementById('cm-cards'), cmTimers=[];
+    var CM_ORDER=['wa','tg','li','sms','fb','call','sl','em'];
+    function cmClear(){cmTimers.forEach(clearTimeout);cmTimers=[];}
+    function cmLayout(){
+      var y=9.8;
+      [].forEach.call(cmBox.children,function(c,i){
+        c.classList.toggle('is-latest',i===0);
+        c.style.transform='translateY('+(y-9.8)+'px)';
+        y+=c.offsetHeight+8.64;
+      });
+    }
+    function cmPlay(target){
+      cmClear(); cmBox.innerHTML='';
+      var seq=CM_ORDER.filter(function(k){return k!==target;}).reverse().concat([target]);
+      seq.forEach(function(k,n){
+        cmTimers.push(setTimeout(function(){
+          var src=cmTpl.content.querySelector('[data-ch="'+k+'"]'); if(!src)return;
+          var c=src.cloneNode(true); c.classList.add('enter'); c.classList.toggle('hit',k===target);
+          c.style.transform='translateY(-32px) scale(.94)';
+          cmBox.insertBefore(c,cmBox.firstChild);
+          while(cmBox.children.length>6)cmBox.lastElementChild.remove();
+          c.getBoundingClientRect();
+          requestAnimationFrame(function(){c.classList.remove('enter');cmLayout();});
+        },n*420));
+      });
+    }
     var GAP=113.766;
     var events=[
       ['OP','OpsTracer','DA','Monitoring alert opened <br>incident INC-2291','Correlating alert context...',0,0],
       ['OP','OpsTracer','DA','Repeat alert joined <br>incident INC-2291','Updating the incident timeline...',0,0],
-      ['OP','OpsTracer','PH','Primary responder <br>paged by SMS','Paging the current on-call responder...',2,3,3],
+      ['OP','OpsTracer','PH','Primary responder <br>paged by SMS','Paging the current on-call responder...',2,3,'sms'],
       ['OP','OpsTracer','CA','On-call coverage resolved <br>for this service','Checking the active schedule...',1,2],
-      ['RE','Responder','PH','Incident acknowledged <br>escalation stopped','Recording acknowledgement...',3,3,5],
+      ['RE','Responder','PH','Incident acknowledged <br>escalation stopped','Recording acknowledgement...',3,3,'call'],
       ['RE','Responder','SE','Incident resolved <br>notifications closed','Closing the incident timeline...',3,1]
     ];
     var timers=[], feedTimer=null, feedIdx=0, feed=null, started=false, visible=true, finished=false;
@@ -1380,14 +1469,14 @@ html.js .traced.pre .tr-art{opacity:0;transform:translate3d(0,12px,0)}
       setStatus(ev[4]); highlight(ev);
       var isCm=ev[6]===3;
       pv.classList.toggle('cm',isCm);
-      cmCards.forEach(function(c,i){c.classList.toggle('hit',isCm&&i===ev[7]);});
+      if(isCm)cmPlay(ev[7]); else cmClear();
       return isCm;
     }
     function startFeed(){
       if(feedTimer)return;
       if(!feed.children.length)push.lastCm=push();
       if(reduce)return;
-      (function tick(wait){feedTimer=setTimeout(function(){var w=3600;if(visible&&!document.hidden)w=push()?5600:3600;tick(w);},wait);})(push.lastCm?5600:3600);
+      (function tick(wait){feedTimer=setTimeout(function(){var w=3600;if(visible&&!document.hidden)w=push()?6400:3600;tick(w);},wait);})(push.lastCm?6400:3600);
     }
     function setupFeed(){
       tlBox.querySelectorAll('.pv-tl').forEach(function(n){n.remove();});
@@ -1411,24 +1500,24 @@ html.js .traced.pre .tr-art{opacity:0;transform:translate3d(0,12px,0)}
       (function type(){
         if(finished)return;
         msgP.textContent=prompt.slice(0,i); i++;
-        if(i<=prompt.length){later(type,22+Math.random()*14);return;}
+        if(i<=prompt.length){later(type,9+Math.random()*6);return;}
         msgP.classList.remove('typing'); msgP.innerHTML=promptHTML;
-        later(build,400);
+        later(build,180);
       })();
     }
     function build(){
       pv.classList.add('s-chat','live'); setStatus('Reading alert context...');
-      var T=1200, st=72;
+      var T=450, st=56;
       chips.forEach(function(c,i){later(function(){c.classList.add('show');setStatus(i===chips.length-1?'Resolving on-call coverage...':'Connecting incident signals...');},T+i*st);});
-      var A=T+chips.length*st+200;
+      var A=T+chips.length*st+120;
       steps.slice(0,3).forEach(function(c,i){later(function(){c.classList.add('show');setStatus(i===2?'Starting escalation...':'Resolving on-call coverage...');},A+i*st);});
-      var W=A+3*st+200;
+      var W=A+3*st+120;
       later(function(){steps[3].classList.add('show');setStatus('Opening incident timeline...');},W);
-      var B=W+st+320;
+      var B=W+st+140;
       later(function(){pv.classList.add('s-app');},B);
-      later(function(){pv.classList.add('s-reveal');},B+1000);
-      later(function(){pv.classList.add('s-built');startFeed();},B+1000+2100+350);
-      later(function(){finished=true;pv.classList.add('done');},B+1000+2100+350+900);
+      later(function(){pv.classList.add('s-reveal');startFeed();},B+450);
+      later(function(){pv.classList.add('s-built');},B+450+1200);
+      later(function(){finished=true;pv.classList.add('done');},B+450+1200+600);
     }
     pv.addEventListener('click',finish);
     if(!('IntersectionObserver' in window)){run();return;}
@@ -1466,9 +1555,9 @@ html.js .traced.pre .tr-art{opacity:0;transform:translate3d(0,12px,0)}
     line.style.clipPath='inset(0 0 '+cuts[0]+' 0)'; setProg(1,false);
     var played=false;
     function step(i){
-      if(i>=items.length){setTimeout(complete,260);return;}
+      if(i>=items.length){setTimeout(complete,150);return;}
       items[i].classList.add('chk'); setProg(i,true);
-      setTimeout(function(){resolve(i);setTimeout(function(){step(i+1);},360);},720);
+      setTimeout(function(){resolve(i);setTimeout(function(){step(i+1);},180);},420);
     }
     function complete(){
       badge.textContent='Complete'; setProg(items.length,false); setTimeout(function(){line.style.clipPath='';},700);
@@ -1478,13 +1567,27 @@ html.js .traced.pre .tr-art{opacity:0;transform:translate3d(0,12px,0)}
     function play(){
       if(played)return; played=true;
       panel.classList.add('play'); panel.classList.remove('pre');
-      setTimeout(function(){step(1);},900);
+      setTimeout(function(){step(1);},450);
     }
     if(!('IntersectionObserver' in window)){play();return;}
     var io=new IntersectionObserver(function(es){
       es.forEach(function(e){if(e.isIntersecting&&e.intersectionRatio>=.3){play();io.disconnect();}});
     },{threshold:[0,.15,.3,.5],rootMargin:'0px 0px -6% 0px'});
     io.observe(panel);
+  })();
+
+  /* Pillars: stage the visible state once the panel is on screen; loop only while visible. */
+  (function(){
+    var pl=document.querySelector('.pl'); if(!pl)return;
+    var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function warm(){pl.querySelectorAll('img[loading="lazy"]').forEach(function(i){i.loading='eager';});}
+    if('IntersectionObserver' in window){var wio=new IntersectionObserver(function(es){if(es.some(function(e){return e.isIntersecting;})){warm();wio.disconnect();}},{rootMargin:'900px 0px'});wio.observe(pl);}else warm();
+    if(reduce||!('IntersectionObserver' in window)){pl.dataset.seen=1;pl.querySelectorAll('.pl-v').forEach(function(v){v.classList.add('play');});if(!reduce)pl.classList.add('live');return;}
+    new IntersectionObserver(function(es){es.forEach(function(e){
+      var vis=e.isIntersecting&&e.intersectionRatio>=.3;
+      if(vis&&!pl.dataset.seen){pl.dataset.seen=1;var v=pl.querySelector('.pl-v.on');if(v)v.classList.add('play');}
+      pl.classList.toggle('live',vis);
+    });},{threshold:[0,.3,.6]}).observe(pl);
   })();
 
   /* Persona cards: stage each card's visual once, then loop the connectors. */
