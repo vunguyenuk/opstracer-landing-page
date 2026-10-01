@@ -778,6 +778,43 @@ html.js .traced.pre .tr-art{opacity:0;transform:translate3d(0,12px,0)}
   .audit-grid h3{white-space:normal}
   .plan-price small{margin-left:auto}
 }
+
+/* ==========================================================================
+   Team — mirrors the pricing panel: same column width, hairline grid, 24px shell.
+   ========================================================================== */
+.co{font-feature-settings:"calt" 0,"liga" 0,"zero" 0;font-variant-ligatures:none}
+.team{margin-top:min(150px,7.8vw)}
+.team-head{width:var(--c-pricing-head);margin:0 auto;display:flex;align-items:flex-end;justify-content:space-between;gap:min(120px,6.25vw)}
+.team-head .h2{flex:none}
+.team-intro{width:min(560px,100%)}
+.team-intro p{font-size:16px;line-height:24px;color:var(--muted)}
+.team-count{display:block;margin-top:18px;font-family:var(--f-sans);font-weight:500;font-size:12px;line-height:16px;letter-spacing:.96px;text-transform:uppercase;color:var(--text)}
+.team-grid{width:var(--c-pricing-head);margin:min(64px,3.333vw) auto 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:24px;overflow:hidden;list-style:none;padding:0}
+.tm{background:#fff;padding:min(32px,1.667vw) min(32px,1.667vw) min(30px,1.563vw)}
+.tm-ph{margin:0;aspect-ratio:1;border-radius:12px;overflow:hidden;background:var(--surface)}
+.tm-ph img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.22,1,.36,1)}
+.tm h3{margin-top:22px;font-weight:500;font-size:22px;line-height:28px;letter-spacing:-.44px;color:var(--text)}
+.tm p{margin-top:6px;font-family:var(--f-sans);font-weight:500;font-size:12px;line-height:16px;letter-spacing:.48px;text-transform:uppercase;color:var(--soft)}
+@media (hover:hover){
+  .tm:hover .tm-ph img{transform:scale(1.03)}
+}
+@media (prefers-reduced-motion:reduce){.tm-ph img{transition:none}.tm:hover .tm-ph img{transform:none}}
+@media (max-width:1366px){
+  .team-head{flex-direction:column;align-items:flex-start;gap:20px}
+}
+@media (max-width:1099px){
+  .team{margin-top:88px}
+  .team-head,.team-grid{width:auto;margin-inline:20px}
+  .team-grid{margin-top:40px;grid-template-columns:repeat(3,minmax(0,1fr))}
+  .tm{padding:20px 20px 22px}
+}
+@media (max-width:700px){
+  .team-grid{grid-template-columns:repeat(2,minmax(0,1fr));border-radius:18px}
+  .tm{padding:14px 14px 18px}
+  .tm-ph{border-radius:8px}
+  .tm h3{margin-top:14px;font-size:17px;line-height:22px;letter-spacing:-.2px}
+  .tm p{font-size:11px;letter-spacing:.4px}
+}
 </style>
 </head>
 <body>
@@ -793,10 +830,11 @@ html.js .traced.pre .tr-art{opacity:0;transform:translate3d(0,12px,0)}
     <a href="#evidence">RCA</a>
     <a href="#integrations">Integrations</a>
     <a href="#pricing">Pricing</a>
+    <a href="#team">Team</a>
   </nav>
   <div class="nav-cta">
-    <a class="btn btn-sm btn-gray" href="https://calendly.com/channguyen" target="_blank" rel="noopener">Talk to us</a>
-    <a class="btn btn-sm btn-dark" href="mailto:hello@opstracer.ai">Get a live demo</a>
+    <a class="btn btn-sm btn-gray" href="mailto:hello@opstracer.ai">Talk to us</a>
+    <a class="btn btn-sm btn-dark" href="https://calendly.com/channguyen" target="_blank" rel="noopener">Get a live demo</a>
   </div>
 </header>
 
@@ -808,8 +846,8 @@ html.js .traced.pre .tr-art{opacity:0;transform:translate3d(0,12px,0)}
   <h1 class="rv">Turn production incidents into traceable answers</h1>
   <p class="hero-sub rv nw">When production breaks, OpsTracer finds the right engineer, traces what <br class="d-br"> happened, and explains why with a defensible timeline your team can trust.</p>
   <div class="hero-cta rv">
-    <a class="btn btn-md btn-gray" href="https://calendly.com/channguyen" target="_blank" rel="noopener">Talk to us</a>
-    <a class="btn btn-md btn-dark btn-arrow" href="mailto:hello@opstracer.ai">Get a live demo<span class="ic"><img src="assets/figma/arrow-up-right.svg" alt=""></span></a>
+    <a class="btn btn-md btn-gray" href="mailto:hello@opstracer.ai">Talk to us</a>
+    <a class="btn btn-md btn-dark btn-arrow" href="https://calendly.com/channguyen" target="_blank" rel="noopener">Get a live demo<span class="ic"><img src="assets/figma/arrow-up-right.svg" alt=""></span></a>
   </div>
 
   <div class="hero-preview" data-fit data-w="1602.09" data-h="814">
@@ -972,7 +1010,7 @@ html.js .traced.pre .tr-art{opacity:0;transform:translate3d(0,12px,0)}
               <p class="body" style="max-width:439px">Connects symptom windows to deploys, commits, feature flags, infra changes, and dependencies.</p>
             </div>
           </div>
-          <a class="btn btn-md btn-dark pl-cta" href="mailto:hello@opstracer.ai">Get a live demo</a>
+          <a class="btn btn-md btn-dark pl-cta" href="https://calendly.com/channguyen" target="_blank" rel="noopener">Get a live demo</a>
         </div>
 
         <div class="pl-right">
@@ -1086,7 +1124,7 @@ html.js .traced.pre .tr-art{opacity:0;transform:translate3d(0,12px,0)}
         <span style="left:399.76px">Code changes</span>
         <span style="left:647.25px">Evidence timeline</span>
       </div>
-      <a class="btn btn-dark tr-cta" href="mailto:hello@opstracer.ai">Get a live demo</a>
+      <a class="btn btn-dark tr-cta" href="https://calendly.com/channguyen" target="_blank" rel="noopener">Get a live demo</a>
     </div>
   </div>
 </section>
@@ -1351,6 +1389,59 @@ html.js .traced.pre .tr-art{opacity:0;transform:translate3d(0,12px,0)}
 </section>
 
 <!-- ============ CTA + FOOTER (152:7556) ============ -->
+<!-- ============ TEAM ============ -->
+<section class="team" id="team">
+  <div class="team-head">
+    <h2 class="h2 rv">The people behind <br>the pager.</h2>
+    <div class="team-intro rv">
+      <p>OpsTracer is built by a small engineering team at <span class="co">c0x12c&nbsp;Inc.</span> No faceless vendor: the people below design, ship, and support every part of the product on this page.</p>
+      <span class="team-count">08 people &middot; <span class="co">c0x12c Inc.</span></span>
+    </div>
+  </div>
+  <ul class="team-grid rv">
+    <li class="tm">
+      <figure class="tm-ph"><img src="assets/team/chan-nguyen.jpg" alt="Chan Nguyen" width="480" height="480" loading="lazy" decoding="async"></figure>
+      <h3>Chan Nguyen</h3>
+      <p>Founder &amp; CEO</p>
+    </li>
+    <li class="tm">
+      <figure class="tm-ph"><img src="assets/team/khanh-nguyen.jpg" alt="Khanh Nguyen" width="480" height="480" loading="lazy" decoding="async"></figure>
+      <h3>Khanh Nguyen</h3>
+      <p>Engineering</p>
+    </li>
+    <li class="tm">
+      <figure class="tm-ph"><img src="assets/team/tuan-doan.jpg" alt="Tuan Doan" width="480" height="480" loading="lazy" decoding="async"></figure>
+      <h3>Tuan Doan</h3>
+      <p>Engineering</p>
+    </li>
+    <li class="tm">
+      <figure class="tm-ph"><img src="assets/team/khoa-dang-huynh.jpg" alt="Khoa Dang Huynh" width="480" height="480" loading="lazy" decoding="async"></figure>
+      <h3>Khoa Dang Huynh</h3>
+      <p>Engineering</p>
+    </li>
+    <li class="tm">
+      <figure class="tm-ph"><img src="assets/team/truc-le.jpg" alt="Truc Le" width="480" height="480" loading="lazy" decoding="async"></figure>
+      <h3>Truc Le</h3>
+      <p>Engineering</p>
+    </li>
+    <li class="tm">
+      <figure class="tm-ph"><img src="assets/team/nguyen-dang.jpg" alt="Nguyen Dang" width="480" height="480" loading="lazy" decoding="async"></figure>
+      <h3>Nguyen Dang</h3>
+      <p>Engineering</p>
+    </li>
+    <li class="tm">
+      <figure class="tm-ph"><img src="assets/team/huy-che.jpg" alt="Huy Che" width="480" height="480" loading="lazy" decoding="async"></figure>
+      <h3>Huy Che</h3>
+      <p>Engineering</p>
+    </li>
+    <li class="tm">
+      <figure class="tm-ph"><img src="assets/team/anh-le.jpg" alt="Anh Le" width="480" height="480" loading="lazy" decoding="async"></figure>
+      <h3>Anh Le</h3>
+      <p>Engineering</p>
+    </li>
+  </ul>
+</section>
+
 <div class="end" id="contact">
   <section class="cta">
     <div class="cta-in">
@@ -1358,7 +1449,7 @@ html.js .traced.pre .tr-art{opacity:0;transform:translate3d(0,12px,0)}
         <h2 class="rv">Stop guessing in production.</h2>
         <p class="rv nw">Bring on-call, incident investigation, evidence, root cause, RCA, and prevention <br class="d-br"> into one traceable workflow.</p>
       </div>
-      <a class="btn btn-md btn-light" href="mailto:hello@opstracer.ai" style="width:164px">Get a live demo</a>
+      <a class="btn btn-md btn-light" href="https://calendly.com/channguyen" target="_blank" rel="noopener" style="width:164px">Get a live demo</a>
     </div>
   </section>
   <footer class="foot" id="trust">
@@ -1367,7 +1458,7 @@ html.js .traced.pre .tr-art{opacity:0;transform:translate3d(0,12px,0)}
       <p>On-call and incident tracing for engineering teams.</p>
     </div>
     <div class="foot-r">
-      <p>A product of Spartan, 2026.</p>
+      <p>&copy; 2026 <span class="co">c0x12c Inc.</span></p>
       <a href="https://opstracer.ai">opstracer.ai</a>
     </div>
   </footer>
@@ -1674,7 +1765,7 @@ html.js .traced.pre .tr-art{opacity:0;transform:translate3d(0,12px,0)}
   window.addEventListener('scroll',function(){onScroll(window.scrollY);},{passive:true});
   /* Nav: underline the link for the section currently under the header. */
   var links=[].slice.call(document.querySelectorAll('.nav-links a'));
-  var owner={'product':null,'pillars':'#pillars','use-cases':'#use-cases','audit':'#audit','evidence':'#evidence','integrations':'#integrations','pricing':'#pricing'};
+  var owner={'product':null,'pillars':'#pillars','use-cases':'#use-cases','audit':'#audit','evidence':'#evidence','integrations':'#integrations','pricing':'#pricing','team':'#team'};
   var secs=Object.keys(owner).map(function(id){return document.getElementById(id);}).filter(Boolean);
   var traced=document.querySelector('section.traced'); if(traced){traced.dataset.nav='#pillars';secs.push(traced);}
   var ticking=false;
